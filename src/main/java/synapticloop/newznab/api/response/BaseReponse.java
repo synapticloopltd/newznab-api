@@ -16,10 +16,18 @@ public abstract class BaseReponse {
 
 	protected BaseReponse(String json) throws NewzNabApiException {
 		this(parse(json));
+
+		if(null != response.optString("error", null)) {
+			throw new NewzNabApiException(String.format("Exception generated in creating the response: message was %s", response.toString()));
+		}
 	}
 
-	public BaseReponse(JSONObject jsonObject) {
+	public BaseReponse(JSONObject jsonObject) throws NewzNabApiException {
 		this.response = jsonObject;
+
+		if(null != response.optString("error", null)) {
+			throw new NewzNabApiException(String.format("Exception generated in creating the response: message was '%s'", response.toString()));
+		}
 	}
 
 	/**

@@ -33,12 +33,23 @@ dependencies {
 	compile 'commons-io:commons-io:2.5'
 	compile 'org.slf4j:slf4j-api:1.7.21'
 	compile 'org.json:json:20160810'
+	
 
 	testRuntime 'junit:junit:4.12'
+	testRuntime 'org.mockito:mockito-all:2.0.2-beta'
 	testRuntime 'org.apache.logging.log4j:log4j-slf4j-impl:2.7'
 	testRuntime 'org.apache.logging.log4j:log4j-core:2.7'
+	testRuntime 'org.powermock:powermock:1.6.6'
+	testRuntime 'org.powermock:powermock-api-mockito:1.6.6'
+	testRuntime 'org.powermock:powermock-module-junit4:1.6.6'
+	testRuntime 'cglib:cglib:3.2.4'
 
 	testCompile 'junit:junit:4.12'
+	testCompile 'org.mockito:mockito-all:2.0.2-beta'
 	testCompile 'org.apache.logging.log4j:log4j-slf4j-impl:2.7'
 	testCompile 'org.apache.logging.log4j:log4j-core:2.7'
+	testCompile 'org.powermock:powermock:1.6.6'
+	testCompile 'org.powermock:powermock-api-mockito:1.6.6'
+	testCompile 'org.powermock:powermock-module-junit4:1.6.6'
+	testCompile 'cglib:cglib:3.2.4'
 }

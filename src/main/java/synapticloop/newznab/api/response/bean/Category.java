@@ -1,9 +1,7 @@
 package synapticloop.newznab.api.response.bean;
 
-import java.util.Date;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Copyright (c) 2016 Synapticloop.
@@ -21,28 +19,22 @@ import org.slf4j.LoggerFactory;
  * this source code or binaries.
  */
 
-public class GroupBean {
-	private static final Logger LOGGER = LoggerFactory.getLogger(GroupBean.class);
-
+public class Category {
 	private final Integer id;
 	private final String name;
-	private final String description;
-	private final Date lastUpdate;
 
-	public GroupBean(Integer id, String name, String description, Date lastUpdate) {
+	private final List<Category> subCategoryBeans = new ArrayList<Category>();
+
+	public Category(Integer id, String name) {
 		this.id = id;
 		this.name = name;
-		this.description = description;
-		this.lastUpdate = lastUpdate;
+	}
+
+	public void addSubCategory(Category categoryBean) {
+		subCategoryBeans.add(categoryBean);
 	}
 
 	public Integer getId() { return this.id; }
 
 	public String getName() { return this.name; }
-
-	public Date getLastUpdate() { return this.lastUpdate; }
-
-	public String getDescription() { return this.description; }
-
-
 }

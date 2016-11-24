@@ -1,11 +1,5 @@
 package synapticloop.newznab.api.response.bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /*
  * Copyright (c) 2016 Synapticloop.
  * 
@@ -22,24 +16,29 @@ import org.slf4j.LoggerFactory;
  * this source code or binaries.
  */
 
-public class CategoryBean {
-	private static final Logger LOGGER = LoggerFactory.getLogger(CategoryBean.class);
+import java.util.Date;
 
+
+public class Group {
 	private final Integer id;
 	private final String name;
+	private final String description;
+	private final Date lastUpdate;
 
-	private final List<CategoryBean> subCategoryBeans = new ArrayList<CategoryBean>();
-
-	public CategoryBean(Integer id, String name) {
+	public Group(Integer id, String name, String description, Date lastUpdate) {
 		this.id = id;
 		this.name = name;
-	}
-
-	public void addSubCategory(CategoryBean categoryBean) {
-		subCategoryBeans.add(categoryBean);
+		this.description = description;
+		this.lastUpdate = lastUpdate;
 	}
 
 	public Integer getId() { return this.id; }
 
 	public String getName() { return this.name; }
+
+	public Date getLastUpdate() { return this.lastUpdate; }
+
+	public String getDescription() { return this.description; }
+
+
 }

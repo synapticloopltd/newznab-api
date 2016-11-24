@@ -31,9 +31,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import synapticloop.newznab.api.exception.NewzNabApiException;
-import synapticloop.newznab.api.response.bean.CategoryBean;
-import synapticloop.newznab.api.response.bean.GenreBean;
-import synapticloop.newznab.api.response.bean.GroupBean;
+import synapticloop.newznab.api.response.bean.Category;
+import synapticloop.newznab.api.response.bean.Genre;
+import synapticloop.newznab.api.response.bean.Group;
 
 public class CapsResponse extends BaseReponse {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CapsResponse.class);
@@ -64,14 +64,14 @@ public class CapsResponse extends BaseReponse {
 	private boolean registrationAvailable;
 	private boolean registrationOpen;
 
-	private List<GenreBean> genres = new ArrayList<GenreBean>();
-	private Map<Integer, List<GenreBean>> categoryGenreLookup = new HashMap<Integer, List<GenreBean>>();
+	private List<Genre> genres = new ArrayList<Genre>();
+	private Map<Integer, List<Genre>> categoryGenreLookup = new HashMap<Integer, List<Genre>>();
 
-	private List<GroupBean> groups = new ArrayList<GroupBean>();
-	private Map<Integer, List<GroupBean>> idGroupLookup = new HashMap<Integer, List<GroupBean>>();
+	private List<Group> groups = new ArrayList<Group>();
+	private Map<Integer, Group> idGroupLookup = new HashMap<Integer, Group>();
 
-	private List<CategoryBean> categories = new ArrayList<CategoryBean>();
-	private Map<Integer, CategoryBean> idCategoryLookup = new HashMap<Integer, CategoryBean>();
+	private List<Category> categories = new ArrayList<Category>();
+	private Map<Integer, Category> idCategoryLookup = new HashMap<Integer, Category>();
 
 	public CapsResponse(String json) throws NewzNabApiException {
 		super(json);
@@ -124,16 +124,16 @@ public class CapsResponse extends BaseReponse {
 			Integer id = this.readInt(attributes, "id");
 			Integer categoryId = this.readInt(attributes, "categoryid");
 			String name = this.readString(attributes, "name");
-			GenreBean genreBean = new GenreBean(id, categoryId, name);
-			List<GenreBean> list = categoryGenreLookup.get(categoryId);
+			Genre genre = new Genre(id, categoryId, name);
+			List<Genre> list = categoryGenreLookup.get(categoryId);
 
 			if(null == list) {
-				list = new ArrayList<GenreBean>();
+				list = new ArrayList<Genre>();
 			}
 
-			list.add(genreBean);
+			list.add(genre);
 			categoryGenreLookup.put(categoryId, list);
-			genres.add(genreBean);
+			genres.add(genre);
 
 			this.warnOnMissedKeys(attributes);
 		}
@@ -178,17 +178,9 @@ public class CapsResponse extends BaseReponse {
 				LOGGER.error(String.format("Could not format date for '%s'", dateTemp));
 			}
 
-			GroupBean groupBean = new GroupBean(id, name, description, lastUpdated);
-			List<GroupBean> list = idGroupLookup.get(id);
-
-			if(null == list) {
-				list = new ArrayList<GroupBean>();
-			}
-
-			list.add(groupBean);
-
-			idGroupLookup.put(id, list);
-			groups.add(groupBean);
+			Group group = new Group(id, name, description, lastUpdated);
+			idGroupLookup.put(id, group);
+			groups.add(group);
 
 			this.warnOnMissedKeys(attributes);
 		}
@@ -209,9 +201,9 @@ public class CapsResponse extends BaseReponse {
 			Integer id = this.readInt(attributes, "id");
 			String name = this.readString(attributes, "name");
 
-			CategoryBean categoryBean = new CategoryBean(id, name);
-			idCategoryLookup.put(id, categoryBean);
-			categories.add(categoryBean);
+			Category category = new Category(id, name);
+			idCategoryLookup.put(id, category);
+			categories.add(category);
 
 			// now we need to go through the sub-categories
 			JSONArray subcatArray = this.readObjects(categoryObject, "subcat");
@@ -225,8 +217,8 @@ public class CapsResponse extends BaseReponse {
 					Integer subcatId = this.readInt(subcatAttributes, "id");
 					String subcatName = this.readString(subcatAttributes, "name");
 
-					CategoryBean subcategoryBean = new CategoryBean(subcatId, subcatName);
-					categoryBean.addSubCategory(subcategoryBean);
+					Category subcategory = new Category(subcatId, subcatName);
+					category.addSubCategory(subcategory);
 
 					this.warnOnMissedKeys(subcatAttributes);
 				}
@@ -240,6 +232,11 @@ public class CapsResponse extends BaseReponse {
 
 	private boolean getBooleanAttributeFromObject(JSONObject searchingObject, String key) {
 		JSONObject searchObject = this.readObject(searchingObject, key);
+
+		if(null == searchObject) {
+			return(false);
+		}
+
 		JSONObject searchObjectAttributes = getAttributesfromObject(searchObject);
 		return("yes".equals(this.readString(searchObjectAttributes, "available")));
 	}
@@ -252,4 +249,57 @@ public class CapsResponse extends BaseReponse {
 	protected Logger getLogger() {
 		return(LOGGER);
 	}
+
+	public String getServerAppversion() { return this.serverAppversion; }
+
+	public String getServerVersion() { return this.serverVersion; }
+
+	public String getServerTitle() { return this.serverTitle; }
+
+	public String getServerStrapline() { return this.serverStrapline; }
+
+	public String getServerEmail() { return this.serverEmail; }
+
+	public String getServerUrl() { return this.serverUrl; }
+
+	public String getServerImage() { return this.serverImage; }
+
+	
+	
+	public Integer getLimitsMax() { return this.limitsMax; }
+
+	public Integer getLimitsDefault() { return this.limitsDefault; }
+
+	
+	
+	public boolean getSearchAvailable() { return this.searchAvailable; }
+
+	public boolean getSearchTvAvailable() { return this.searchTvAvailable; }
+
+	public boolean getSearchAudioAvailable() { return this.searchAudioAvailable; }
+
+	public boolean getSearchMovieAvailable() { return this.searchMovieAvailable; }
+
+	
+	
+	public boolean getRegistrationAvailable() { return this.registrationAvailable; }
+
+	public boolean getRegistrationOpen() { return this.registrationOpen; }
+
+
+	public List<Genre> getGenres() { return this.genres; }
+
+	public List<Genre> getGenresByCategoryId(Integer categoryId) { return(categoryGenreLookup.get(categoryId)); }
+
+	
+	
+	public List<Group> getGroups() { return this.groups; }
+
+	public Group getGroupById(Integer id) { return(idGroupLookup.get(id)); }
+
+	
+	
+	public List<Category> getCategories() { return this.categories; }
+
+	public Category getCategoryById(Integer id) { return(idCategoryLookup.get(id)); }
 }

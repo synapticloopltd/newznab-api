@@ -44,6 +44,7 @@ public class NewzNabApi {
 	private static final String KEY_REQUEST_PARAMETER_APIKEY = "apikey";
 	private static final String KEY_REQUEST_PARAMETER_FUNCTION = "t";
 	private static final String KEY_REQUEST_PARAMETER_OUTPUT = "o";
+	private static final String KEY_REQUEST_PARAMETER_EMAIL = "email";
 
 	private static final String VALUE_REQUEST_PARAMETER_CAPS = "caps";
 	private static final String VALUE_REQUEST_PARAMETER_JSON = "json";
@@ -82,10 +83,11 @@ public class NewzNabApi {
 		return(new CapsResponse(EntityUtils.toString(httpResponse.getEntity())));
 	}
 
-	public RegistrationResponse getRegistration() throws IOException, NewzNabApiException {
+	public RegistrationResponse getRegistration(String emailAddress) throws IOException, NewzNabApiException {
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put(KEY_REQUEST_PARAMETER_FUNCTION, VALUE_REQUEST_PARAMETER_REGISTER);
 		parameters.put(KEY_REQUEST_PARAMETER_OUTPUT, VALUE_REQUEST_PARAMETER_JSON);
+		parameters.put(KEY_REQUEST_PARAMETER_EMAIL, emailAddress);
 
 		CloseableHttpResponse httpResponse = executeGet(parameters);
 		return(new RegistrationResponse(EntityUtils.toString(httpResponse.getEntity())));
