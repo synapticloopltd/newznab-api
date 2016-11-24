@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'eclipse'
+	id 'war'
+	id 'eclipse-wtp'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+// textual information for this project
+group = 'synapticloopltd'
+archivesBaseName = 'newznab-api'
+description = """NewzNab API in java"""
+
+version = '1.0.0'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+	mavenLocal()
+	mavenCentral()
+	jcenter()
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+	runtime 'org.apache.httpcomponents:httpclient:4.5.2'
+	runtime 'commons-io:commons-io:2.5'
+	runtime 'org.slf4j:slf4j-api:1.7.21'
+	runtime 'org.json:json:20160810'
+
+	compile 'org.apache.httpcomponents:httpclient:4.5.2'
+	compile 'commons-io:commons-io:2.5'
+	compile 'org.slf4j:slf4j-api:1.7.21'
+	compile 'org.json:json:20160810'
+
+	testRuntime 'junit:junit:4.12'
+	testRuntime 'org.apache.logging.log4j:log4j-slf4j-impl:2.7'
+	testRuntime 'org.apache.logging.log4j:log4j-core:2.7'
+
+	testCompile 'junit:junit:4.12'
+	testCompile 'org.apache.logging.log4j:log4j-slf4j-impl:2.7'
+	testCompile 'org.apache.logging.log4j:log4j-core:2.7'
+}
