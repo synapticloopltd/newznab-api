@@ -56,6 +56,11 @@ public class NewzNabApi {
 	private final String apiKey;
 
 
+	/**
+	 * Instantiate the NewzNab API
+	 * 
+	 * @param apiUrl the API endpoint URL to connect to 
+	 */
 	public NewzNabApi(String apiUrl) {
 		this(apiUrl, null);
 	}
@@ -74,6 +79,14 @@ public class NewzNabApi {
 		this.apiKey = apiKey;
 	}
 
+	/**
+	 * Get the capabilities that the NewzNab API contains
+	 * 
+	 * @return the capabilities response
+	 * 
+	 * @throws IOException If there was an error connecting with the API
+	 * @throws NewzNabApiException if there was an error with the call
+	 */
 	public CapsResponse getCaps() throws IOException, NewzNabApiException {
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put(KEY_REQUEST_PARAMETER_FUNCTION, VALUE_REQUEST_PARAMETER_CAPS);
@@ -146,5 +159,4 @@ public class NewzNabApi {
 			throw new IOException(e);
 		}
 	}
-
 }

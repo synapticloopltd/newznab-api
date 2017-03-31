@@ -46,7 +46,7 @@ import synapticloop.newznab.api.exception.NewzNabApiException;
 import synapticloop.newznab.api.response.CapsResponse;
 import synapticloop.newznab.api.response.RegistrationResponse;
 
-@PowerMockIgnore("javax.net.ssl.*")
+@PowerMockIgnore({ "javax.net.ssl.*", "javax.management.*" })
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(EntityUtils.class)
 public class NewzNabApiTest {
