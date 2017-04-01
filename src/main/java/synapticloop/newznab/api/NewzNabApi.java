@@ -44,7 +44,6 @@ import synapticloop.newznab.api.exception.NewzNabApiException;
 import synapticloop.newznab.api.response.CapabilitiesResponse;
 import synapticloop.newznab.api.response.RegistrationResponse;
 import synapticloop.newznab.api.response.SearchResponse;
-import synapticloop.newznab.api.response.model.Category;
 
 public class NewzNabApi {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NewzNabApi.class);

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import synapticloop.newznab.api.response.BaseModel;
+import synapticloop.newznab.api.response.model.attributes.ResponseAttributes;
 
 public class Response extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Response.class);

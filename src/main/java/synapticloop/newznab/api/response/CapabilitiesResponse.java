@@ -1,8 +1,5 @@
 package synapticloop.newznab.api.response;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 /*
  * Copyright (c) 2016 Synapticloop.
  * 
@@ -19,24 +16,24 @@ import java.text.SimpleDateFormat;
  * this source code or binaries.
  */
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import synapticloop.newznab.api.exception.NewzNabApiException;
-import synapticloop.newznab.api.response.bean.Category;
-import synapticloop.newznab.api.response.bean.Genre;
-import synapticloop.newznab.api.response.bean.Group;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import synapticloop.newznab.api.response.model.Limit;
+import synapticloop.newznab.api.response.model.Registration;
+import synapticloop.newznab.api.response.model.Searching;
+import synapticloop.newznab.api.response.model.Server;
 
 public class CapabilitiesResponse extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CapabilitiesResponse.class);
+
+	@JsonProperty("server") private Server server;
+	@JsonProperty("limits") private Limit limit;
+	@JsonProperty("registration") private Registration registration;
+	@JsonProperty("searching") private Searching searching;
 
 	@Override
 	public Logger getLogger() {

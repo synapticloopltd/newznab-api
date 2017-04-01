@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import synapticloop.newznab.api.response.BaseModel;
+import synapticloop.newznab.api.response.model.attributes.EnclosureAttributes;
 
 public class Enclosure extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Channel.class);

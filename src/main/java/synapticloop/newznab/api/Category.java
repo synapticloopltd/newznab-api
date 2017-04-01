@@ -1,4 +1,4 @@
-package synapticloop.newznab.api.response.model;
+package synapticloop.newznab.api;
 
 public class Category {
 	public static final int CONSOLE = 1000;
