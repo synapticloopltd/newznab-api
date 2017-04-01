@@ -1,4 +1,4 @@
-package synapticloop.newznab.api.response.bean;
+package synapticloop.newznab.api.response.model.attributes;
 
 import java.util.List;
 

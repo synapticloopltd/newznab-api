@@ -22,6 +22,9 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import synapticloop.newznab.api.response.model.Categories;
+import synapticloop.newznab.api.response.model.Genres;
+import synapticloop.newznab.api.response.model.Groups;
 import synapticloop.newznab.api.response.model.Limit;
 import synapticloop.newznab.api.response.model.Registration;
 import synapticloop.newznab.api.response.model.Searching;
@@ -34,6 +37,9 @@ public class CapabilitiesResponse extends BaseModel {
 	@JsonProperty("limits") private Limit limit;
 	@JsonProperty("registration") private Registration registration;
 	@JsonProperty("searching") private Searching searching;
+	@JsonProperty("categories") private Categories categories;
+	@JsonProperty("groups") private Groups groups;
+	@JsonProperty("genres") private Genres genres;
 
 	@Override
 	public Logger getLogger() {
