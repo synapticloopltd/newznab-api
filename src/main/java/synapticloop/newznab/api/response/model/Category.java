@@ -1,0 +1,47 @@
+package synapticloop.newznab.api.response.model;
+
+public class Category {
+	public static final int CONSOLE = 1000;
+	public static final int CONSOLE_NDS = 1010;
+	public static final int CONSOLE_PSP = 1020;
+	public static final int CONSOLE_WII = 1030;
+	public static final int CONSOLE_XBOX = 1040;
+	public static final int CONSOLE_XBOX_360 = 1050;
+	public static final int CONSOLE_WIIWARE = 1060;
+	public static final int CONSOLE_XBOX_360_DLC = 1070;
+	public static final int MOVIES = 2000;
+	public static final int MOVIES_FOREIGN = 2010;
+	public static final int MOVIES_OTHER = 2020;
+	public static final int MOVIES_SD = 2030;
+	public static final int MOVIES_HD = 2040;
+	public static final int MOVIES_BLURAY = 2050;
+	public static final int MOVIES_3D = 2060;
+	public static final int AUDIO = 3000;
+	public static final int AUDIO_MP3 = 3010;
+	public static final int AUDIO_VIDEO = 3020;
+	public static final int AUDIO_AUDIOBOOK = 3030;
+	public static final int AUDIO_LOSSLESS = 3040;
+	public static final int PC = 4000;
+	public static final int PC_0DAY = 4010;
+	public static final int PC_ISO = 4020;
+	public static final int PC_MAC = 4030;
+	public static final int PC_MOBILE_OTHER = 4040;
+	public static final int PC_GAMES = 4050;
+	public static final int PC_MOBILE_IOS = 4060;
+	public static final int PC_MOBILE_ANDROID = 4070;
+	public static final int TV = 5000;
+	public static final int TV_FOREIGN = 5020;
+	public static final int TV_SD = 5030;
+	public static final int TV_HD = 5040;
+	public static final int TV_OTHER = 5050;
+	public static final int TV_SPORT = 5060;
+	public static final int XXX = 6000;
+	public static final int XXX_DVD = 6010;
+	public static final int XXX_WMV = 6020;
+	public static final int XXX_XVID = 6030;
+	public static final int XXX_X264 = 6040;
+	public static final int OTHER = 7000;
+	public static final int MISC = 7010;
+	public static final int EBOOK = 7020;
+	public static final int COMICS = 7030;
+}

@@ -46,6 +46,7 @@ public abstract class BaseReponse {
 		}
 		return jsonObject;
 	}
+
 	/**
 	 * Read and remove String with key from JSON
 	 * 

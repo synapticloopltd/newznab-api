@@ -43,7 +43,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import synapticloop.newznab.api.exception.NewzNabApiException;
-import synapticloop.newznab.api.response.CapsResponse;
+import synapticloop.newznab.api.response.CapabilitiesResponse;
 import synapticloop.newznab.api.response.RegistrationResponse;
 
 @PowerMockIgnore({ "javax.net.ssl.*", "javax.management.*" })
@@ -67,7 +67,7 @@ public class NewzNabApiTest {
 
 	@Test
 	public void testGetCaps() throws IOException, NewzNabApiException {
-		CapsResponse capsResponse = newzNabApi.getCaps();
+		CapabilitiesResponse capsResponse = newzNabApi.capabilities();
 		assertNotNull(capsResponse);
 	}
 
