@@ -31,7 +31,7 @@ this API will allow you to:
    - generic search
    - TV search
    - Book Search
-   - Moview Search
+   - Movie Search
    - Audio Search
 
 See the following file for a quick start:
