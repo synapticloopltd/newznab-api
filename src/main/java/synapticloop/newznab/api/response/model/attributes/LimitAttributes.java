@@ -30,7 +30,7 @@ public class LimitAttributes extends BaseModel {
 	@JsonProperty("default")  private int defaultLimit;
 
 	public int getMaxLimit() { return maxLimit; }
-	public int  getdefaultLimit() { return defaultLimit; }
+	public int  getDefaultResultsLimit() { return defaultLimit; }
 
 	@Override
 	public Logger getLogger() { return(LOGGER); }

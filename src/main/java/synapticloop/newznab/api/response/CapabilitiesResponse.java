@@ -1,5 +1,7 @@
 package synapticloop.newznab.api.response;
 
+import java.util.List;
+
 /*
  * Copyright (c) 2016-2017 Synapticloop.
  * 
@@ -22,7 +24,9 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import synapticloop.newznab.api.response.model.Categories;
+import synapticloop.newznab.api.response.model.Genre;
 import synapticloop.newznab.api.response.model.Genres;
+import synapticloop.newznab.api.response.model.Group;
 import synapticloop.newznab.api.response.model.Groups;
 import synapticloop.newznab.api.response.model.Limit;
 import synapticloop.newznab.api.response.model.Registration;
@@ -39,6 +43,28 @@ public class CapabilitiesResponse extends BaseModel {
 	@JsonProperty("categories") private Categories categories;
 	@JsonProperty("groups") private Groups groups;
 	@JsonProperty("genres") private Genres genres;
+
+	public String getAppVersion() { return server.getServerAttributes().getAppVersion(); }
+	public Float getVersion() { return server.getServerAttributes().getVersion(); }
+	public String getTitle() { return server.getServerAttributes().getTitle(); }
+	public String getStrapline() { return server.getServerAttributes().getStrapline(); }
+	public String getEmail() { return server.getServerAttributes().getEmail(); }
+	public String getUrl() { return server.getServerAttributes().getUrl(); }
+	public String getImage() { return server.getServerAttributes().getImage(); }
+
+	public int getDefaultResultsLimit() { return(limit.getLimitAttributes().getDefaultResultsLimit()); }
+	public int getMaxResultsLimit() { return(limit.getLimitAttributes().getMaxLimit()); }
+
+	public boolean getIsRegistrationAvailable() { return(registration.getRegistrationAttributes().getIsAvailable()); }
+	public boolean getIsRegistrationOpen() { return(registration.getRegistrationAttributes().getIsOpen()); }
+
+	public boolean getHasAudioSearch() { return(searching.getHasAudioSearch()); }
+	public boolean getHasBookSearch() { return(searching.getHasBookSearch()); }
+	public boolean getHasMovieSearch() { return(searching.getHasMovieSearch()); }
+	public boolean getHasTvSearch() { return(searching.getHasTvSearch()); }
+
+	public List<Group> getGroups() { return(groups.getGroups()); }
+	public List<Genre> getGenres() { return(genres.getGenres()); }
 
 	@Override
 	public Logger getLogger() {

@@ -23,7 +23,7 @@ group = 'synapticloopltd'
 archivesBaseName = 'newznab-api'
 description = """NewzNab API in java"""
 
-version = '1.2.0'
+version = '1.3.0'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
