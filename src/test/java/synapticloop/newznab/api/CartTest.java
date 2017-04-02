@@ -70,7 +70,7 @@ public class CartTest {
 
 		// get the cart
 
-		FeedResponse feedResponse = newzNabApi.getCartFeed();
+		FeedResponse feedResponse = newzNabApi.getFeedForCart();
 		List<FeedItem> feedItems = feedResponse.getFeedItems();
 		boolean isInCart = false;
 		for (FeedItem feedItem : feedItems) {
@@ -96,7 +96,7 @@ public class CartTest {
 		assertNotNull(cartDeleteResponse);
 
 		// check that the guid is not in the cart
-		feedResponse = newzNabApi.getCartFeed();
+		feedResponse = newzNabApi.getFeedForCart();
 		feedItems = feedResponse.getFeedItems();
 		isInCart = false;
 		for (FeedItem feedItem : feedItems) {

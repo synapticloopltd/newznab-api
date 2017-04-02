@@ -29,7 +29,6 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -39,7 +38,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import synapticloop.newznab.api.exception.NewzNabApiException;
@@ -50,53 +48,11 @@ import synapticloop.newznab.api.response.DetailsResponse;
 import synapticloop.newznab.api.response.RegistrationResponse;
 import synapticloop.newznab.api.response.SearchResponse;
 
+import static synapticloop.newznab.api.RequestConstants.*;
+import static synapticloop.newznab.api.Category.*;
+
 public class NewzNabApi {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NewzNabApi.class);
-
-	private static final String KEY_REQUEST_PARAMETER_APIKEY = "apikey";
-	private static final String KEY_REQUEST_PARAMETER_ID = "id";
-	private static final String KEY_REQUEST_PARAMETER_FUNCTION = "t";
-	private static final String KEY_REQUEST_PARAMETER_OUTPUT = "o";
-	private static final String KEY_REQUEST_PARAMETER_SEARCH = "q";
-	private static final String KEY_REQUEST_PARAMETER_OFFSET = "offset";
-	private static final String KEY_REQUEST_PARAMETER_LIMIT = "limit";
-	private static final String KEY_REQUEST_PARAMETER_CATEGORIES = "cat";
-	private static final String KEY_REQUEST_PARAMETER_GROUPS = "group";
-	private static final String KEY_REQUEST_PARAMETER_EXTENDED_ATTRIBUTES = "extended";
-	private static final String KEY_REQUEST_PARAMETER_DELETE_FROM_CART = "del";
-	private static final String KEY_REQUEST_PARAMETER_MAX_AGE = "maxage";
-	private static final String KEY_REQUEST_PARAMETER_RAGE_ID = "rid";
-	private static final String KEY_REQUEST_PARAMETER_TVDB_ID = "tvdbid";
-	private static final String KEY_REQUEST_PARAMETER_TV_MAZE_ID = "tvmazeid";
-	private static final String KEY_REQUEST_PARAMETER_IMDB_ID = "imdbid";
-	private static final String KEY_REQUEST_PARAMETER_GENRE = "genre";
-	private static final String KEY_REQUEST_PARAMETER_GENRES = "genre";
-	private static final String KEY_REQUEST_PARAMETER_EMAIL = "email";
-	private static final String KEY_REQUEST_PARAMETER_SEASON = "season";
-	private static final String KEY_REQUEST_PARAMETER_EPISODE = "episode";
-	private static final String KEY_REQUEST_PARAMETER_ALBUM = "album";
-	private static final String KEY_REQUEST_PARAMETER_ARTIST = "artist";
-	private static final String KEY_REQUEST_PARAMETER_LABEL = "label";
-	private static final String KEY_REQUEST_PARAMETER_TRACK = "track";
-	private static final String KEY_REQUEST_PARAMETER_TITLE = "title";
-	private static final String KEY_REQUEST_PARAMETER_RAW = "raw";
-	private static final String KEY_REQUEST_PARAMETER_AUTHOR = "author";
-
-	private static final String VALUE_REQUEST_PARAMETER_CAPS = "caps";
-	private static final String VALUE_REQUEST_PARAMETER_GET = "get";
-	private static final String VALUE_REQUEST_PARAMETER_JSON = "json";
-	private static final String VALUE_REQUEST_PARAMETER_GETNFO = "getnfo";
-	private static final String VALUE_REQUEST_PARAMETER_REGISTER = "register";
-	private static final String VALUE_REQUEST_PARAMETER_SEARCH = "search";
-	private static final String VALUE_REQUEST_PARAMETER_SEARCH_TV = "tvsearch";
-	private static final String VALUE_REQUEST_PARAMETER_SEARCH_MOVIE = "movie";
-	private static final String VALUE_REQUEST_PARAMETER_SEARCH_MUSIC = "music";
-	private static final String VALUE_REQUEST_PARAMETER_SEARCH_BOOK = "book";
-	private static final String VALUE_REQUEST_PARAMETER_CART_ADD = "cartadd";
-	private static final String VALUE_REQUEST_PARAMETER_CART_DELETE = "cartdel";
-	private static final String VALUE_REQUEST_PARAMETER_DETAILS = "details";
-	private static final String VALUE_REQUEST_PARAMETER_TRUE = "1";
-
 
 	private final CloseableHttpClient client;
 
@@ -115,7 +71,7 @@ public class NewzNabApi {
 	}
 
 	/**
-	 * Instantiate the NewzNab API with an enpoint URL and an API key
+	 * Instantiate the NewzNab API with an endpoint URL and an API key
 	 * 
 	 * @param apiUrl The URL to connect to
 	 * @param apiKey The api Key for access
@@ -153,7 +109,9 @@ public class NewzNabApi {
 	}
 
 	/**
-	 * Register a new user with the service
+	 * Register a new user with the service.  This will return a response with a
+	 * username, password and api key, which can then be used to perform other 
+	 * operations.
 	 * 
 	 * @param emailAddress The email address that this user is registered to
 	 * 
@@ -173,7 +131,7 @@ public class NewzNabApi {
 	}
 
 	/**
-	 * Search for a specific term over all categories
+	 * Search for a specific term over all categories.
 	 * 
 	 * @param query the query to search for
 	 * 
@@ -521,26 +479,166 @@ public class NewzNabApi {
 		return(parseResponse(httpResponse, CartResponse.class));
 	}
 
-	public FeedResponse getCartFeed() throws IOException, NewzNabApiException {
+	/**
+	 * Get the feed for the items that in the cart
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForCart() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(VALUE_REQUEST_PARAMETER_FEED_CART));
+	}
+
+	/**
+	 * Get the latest indexed releases for the site
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForSite() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(VALUE_REQUEST_PARAMETER_FEED_SITE));
+	}
+
+	/**
+	 * Get the feed for all of the tv shows that are marked as 'my shows'
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForMyShows() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(VALUE_REQUEST_PARAMETER_FEED_MY_SHOWS));
+	}
+
+	/**
+	 * Get the feed for all of the movies that are marked as 'my movies'
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForMyMovies() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(VALUE_REQUEST_PARAMETER_FEED_MY_MOVIES));
+	}
+
+	/**
+	 * Get the latest indexed movie releases (if unavailable, this will return an 
+	 * error or an empty list of items in the FeedResponse).
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForMovies() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(CATEGORY_MOVIES));
+	}
+
+	/**
+	 * Get the latest indexed console releases (if unavailable, this will return an 
+	 * error or an empty list of items in the FeedResponse).
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForConsoles() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(CATEGORY_CONSOLE));
+	}
+
+	/**
+	 * Get the latest indexed audio releases (if unavailable, this will return an 
+	 * error or an empty list of items in the FeedResponse).
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForAudio() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(CATEGORY_AUDIO));
+	}
+
+	/**
+	 * Get the latest indexed pc releases (if unavailable, this will return an 
+	 * error or an empty list of items in the FeedResponse).
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForPc() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(CATEGORY_PC));
+	}
+
+	/**
+	 * Get the latest indexed tv releases (if unavailable, this will return an 
+	 * error or an empty list of items in the FeedResponse).
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForTv() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(CATEGORY_TV));
+	}
+
+	/**
+	 * Get the latest indexed XXX releases (if unavailable, this will return an 
+	 * error or an empty list of items in the FeedResponse).
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForXXX() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(CATEGORY_XXX));
+	}
+
+	/**
+	 * Get the latest indexed 'other' releases (if unavailable, this will return an 
+	 * error or an empty list of items in the FeedResponse).
+	 * 
+	 * @return The list of items in the feed
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getFeedForOther() throws IOException, NewzNabApiException {
+		return(getCategoryFeed(CATEGORY_OTHER));
+	}
+
+	/**
+	 * Return the feed for the specified category
+	 * 
+	 * @param category the category to get the feed for {@link Category}
+	 * 
+	 * @return the feed for the category
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public FeedResponse getCategoryFeed(int category) throws IOException, NewzNabApiException {
 		Map<String, String> parameters = new HashMap<String, String>();
 
-		addStringParameter(parameters, "r", apiKey);
-		addStringParameter(parameters, "i", "1");
-		addStringParameter(parameters, "dl", "1");
-		addStringParameter(parameters, "t", "-2");
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_R, apiKey);
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_R, apiKey);
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_I, VALUE_REQUEST_PARAMETER_TRUE);
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_DL, VALUE_REQUEST_PARAMETER_TRUE);
+		addIntegerParameter(parameters, KEY_REQUEST_PARAMETER_RSS_T, category);
 
 		CloseableHttpResponse httpResponse = executeRssGet(parameters);
 		return(parseResponse(httpResponse, FeedResponse.class, true));
-	}
-
-	private void addMapParameters(Map<String, String> parameters, Map<String, String> additionalParameters) {
-		if(null == additionalParameters) {
-			return;
-		}
-
-		for (String key : additionalParameters.keySet()) {
-			addStringParameter(parameters, key, additionalParameters.get(key));
-		}
 	}
 
 	private void addIntegerArrayParameter(Map<String, String> parameters, String key, int[] values) {
