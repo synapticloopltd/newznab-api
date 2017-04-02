@@ -495,9 +495,9 @@ repositories {
 
 ```
 dependencies {
-	runtime(group: 'synapticloopltd', name: 'newznab-api', version: '1.0.0', ext: 'jar')
+	runtime(group: 'synapticloop', name: 'newznab-api', version: '1.0.0', ext: 'jar')
 
-	compile(group: 'synapticloopltd', name: 'newznab-api', version: '1.0.0', ext: 'jar')
+	compile(group: 'synapticloop', name: 'newznab-api', version: '1.0.0', ext: 'jar')
 }
 ```
 
@@ -509,9 +509,9 @@ or, more simply for versions of gradle greater than 2.1
 
 ```
 dependencies {
-	runtime 'synapticloopltd:newznab-api:1.0.0'
+	runtime 'synapticloop:newznab-api:1.0.0'
 
-	compile 'synapticloopltd:newznab-api:1.0.0'
+	compile 'synapticloop:newznab-api:1.0.0'
 }
 ```
 
@@ -527,7 +527,7 @@ dependencies {
 
 ```
 <dependency>
-	<groupId>synapticloopltd</groupId>
+	<groupId>synapticloop</groupId>
 	<artifactId>newznab-api</artifactId>
 	<version>1.0.0</version>
 	<type>jar</type>
