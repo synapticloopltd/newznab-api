@@ -43,10 +43,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import synapticloop.newznab.api.exception.NewzNabApiException;
 import synapticloop.newznab.api.response.CapabilitiesResponse;
 import synapticloop.newznab.api.response.CartResponse;
+import synapticloop.newznab.api.response.CommentResponse;
+import synapticloop.newznab.api.response.CommentsResponse;
 import synapticloop.newznab.api.response.FeedResponse;
 import synapticloop.newznab.api.response.DetailsResponse;
 import synapticloop.newznab.api.response.RegistrationResponse;
 import synapticloop.newznab.api.response.SearchResponse;
+import synapticloop.newznab.api.response.UserResponse;
 
 import static synapticloop.newznab.api.RequestConstants.*;
 import static synapticloop.newznab.api.Category.*;
@@ -99,7 +102,7 @@ public class NewzNabApi {
 	 * @throws IOException If there was an error connecting with the API
 	 * @throws NewzNabApiException if there was an error with the call
 	 */
-	public CapabilitiesResponse capabilities() throws IOException, NewzNabApiException {
+	public CapabilitiesResponse getCapabilities() throws IOException, NewzNabApiException {
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put(KEY_REQUEST_PARAMETER_FUNCTION, VALUE_REQUEST_PARAMETER_CAPS);
 		parameters.put(KEY_REQUEST_PARAMETER_OUTPUT, VALUE_REQUEST_PARAMETER_JSON);
@@ -642,13 +645,53 @@ public class NewzNabApi {
 		Map<String, String> parameters = new HashMap<String, String>();
 
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_R, apiKey);
-		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_R, apiKey);
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_I, VALUE_REQUEST_PARAMETER_TRUE);
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_DL, VALUE_REQUEST_PARAMETER_TRUE);
 		addIntegerParameter(parameters, KEY_REQUEST_PARAMETER_RSS_T, category);
 
 		CloseableHttpResponse httpResponse = executeRssGet(parameters);
 		return(parseResponse(httpResponse, FeedResponse.class, true));
+	}
+
+	public UserResponse getUser(String username) throws IOException, NewzNabApiException {
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put(KEY_REQUEST_PARAMETER_FUNCTION, VALUE_REQUEST_PARAMETER_USER);
+		parameters.put(KEY_REQUEST_PARAMETER_OUTPUT, VALUE_REQUEST_PARAMETER_JSON);
+
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_USERNAME, username);
+
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
+
+		CloseableHttpResponse httpResponse = executeApiGet(parameters);
+		return(parseResponse(httpResponse, UserResponse.class));
+	}
+
+	public CommentsResponse getComments(String guid) throws IOException, NewzNabApiException {
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put(KEY_REQUEST_PARAMETER_FUNCTION, VALUE_REQUEST_PARAMETER_COMMENTS);
+		parameters.put(KEY_REQUEST_PARAMETER_OUTPUT, VALUE_REQUEST_PARAMETER_JSON);
+
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_ID, guid);
+
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
+
+		CloseableHttpResponse httpResponse = executeApiGet(parameters);
+		return(parseResponse(httpResponse, CommentsResponse.class));
+
+	}
+
+	public CommentResponse addComment(String guid, String comment) throws IOException, NewzNabApiException {
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put(KEY_REQUEST_PARAMETER_FUNCTION, VALUE_REQUEST_PARAMETER_COMMENT_ADD);
+		parameters.put(KEY_REQUEST_PARAMETER_OUTPUT, VALUE_REQUEST_PARAMETER_JSON);
+
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_ID, guid);
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_TEXT, comment);
+
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
+
+		CloseableHttpResponse httpResponse = executeApiGet(parameters);
+		return(parseResponse(httpResponse, CommentResponse.class));
 	}
 
 	private void addIntegerArrayParameter(Map<String, String> parameters, String key, int[] values) {
@@ -667,7 +710,7 @@ public class NewzNabApi {
 			}
 			parameters.put(key, stringBuilder.toString());
 		}
-		
+
 	}
 
 	private void addStringArrayParameter(Map<String, String> parameters, String key, String[] values) {
@@ -686,7 +729,7 @@ public class NewzNabApi {
 			}
 			parameters.put(key, stringBuilder.toString());
 		}
-		
+
 	}
 
 	private void addIntegerParameter(Map<String, String> parameters, String key, int value) {
@@ -712,6 +755,7 @@ public class NewzNabApi {
 			parameters.put(key, VALUE_REQUEST_PARAMETER_TRUE);
 		}
 	}
+
 
 	private CloseableHttpResponse executeApiGet(Map<String, String> parameters) throws IOException, NewzNabApiException {
 		return(executeGet(this.apiUrl, parameters));

@@ -44,7 +44,7 @@ public class CapabilitiesTest {
 
 	@Test
 	public void testGetNfo() throws IOException, NewzNabApiException {
-		CapabilitiesResponse capabilitiesResponse = newzNabApi.capabilities();
+		CapabilitiesResponse capabilitiesResponse = newzNabApi.getCapabilities();
 		assertNotNull(capabilitiesResponse);
 
 	}

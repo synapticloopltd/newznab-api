@@ -85,7 +85,7 @@ public class CartTest {
 		// we need to sleep for a little bit - to ensure that the cart has been 
 		// updated - this is not a good way to do things 
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
