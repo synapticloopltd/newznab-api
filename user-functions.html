@@ -1,0 +1,169 @@
+<!doctype html><html><head><title>newznab API by synapticloop</title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]--><link rel="stylesheet" href="assets/css/main.css" /><!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script></head><body><div id="header"><h1 id="logo"><a href="http://synapticloop.github.io/">Synapticloop</a> :: <a href="index.html">newznab API</a></h1><nav id="nav"><ul><li><a href="#">Projects</a><ul><li><a href="https://synapticloop.github.io/h2zero/"><i class="icon fa-database"></i> h2zero</a></li><li><a href="https://github.com/synapticloop/backblaze-b2-java-api/"><i class="icon fa-puzzle-piece"></i> backblaze b2 java api</a></li><li><a href="https://synapticloop.github.io/templar/"><i class="icon fa-shield"></i> templar</a></li><li><a href="https://synapticloop.github.io/templar-gen/"><i class="icon fa-gears"></i> templar gen</a></li><li><a href="https://synapticloop.github.io/linode-api/"><i class="icon fa-puzzle-piece"></i> linode java api</a></li><li><a href="https://github.com/synapticloopltd/scaleway-java-api/"><i class="icon fa-puzzle-piece"></i> scaleway java api</a></li><li><a href="https://synapticloopltd.github.io/newznab-api/"><i class="icon fa-puzzle-piece"></i> newznab java api</a></li><li><a href="https://synapticloopltd.github.io/gradle-plugin-java-create/"><i class="icon fa-gears"></i> gradle plugin creator for java</a></li><li><a href="https://synapticloopltd.github.io/recipease/"><i class="icon fa-spoon"></i> recipease</a></li><li><a href="https://synapticloop.github.io/routemaster/"><i class="icon fa-bus"></i> routemaster</a></li></ul></li></ul></nav></div><section id="banner"><h2>Welcome to newznab api</h2><p>A Java API for connecting to NewzNab powered Usenet Indexers</p></section><section id="main"><div class="container"><div class="row 200%"><div class="4u 12u$(medium)"><section id="sidebar"><section><h3>newznab-api</h3><p>A Java API for connecting to NewzNab powered Usenet Indexers</p><hr /><ul><li><a href="index.html">Home</a></li><li><a href="searching.html">Searching</a></li><li><a href="feeds.html">Feeds</a></li><li><a href="comments.html">Comments</a></li><li><a href="user-functions.html">User functions</a></li></ul></section><hr /><section><h3>View this project on github</h3><footer><ul class="actions"><li><a href="https://github.com/synapticloopltd/newznab-api" class="button small alt">GitHub Project</a></li></ul></footer></section><hr /><section>
+	<h3>templar-gen</h3>
+	<p>
+		This project is maintained by <a href="https://github.com/synapticloop">synapticloop</a> 
+		and these pages were generated with 
+		<a href="https://github.com/synapticloop/templar-gen/">synapticloop templar-gen</a>
+	</p>
+</section>
+</section></div><div class="8u$ 12u$(medium) important(medium)"><section id="content"><h3>User Functions</h3><p>Additional functions that are available</p><h4>Register</h4><p>Register a new user (although in general NewzNab based indexers are invitation only).  An email address is required, and a username and password is then returned.</p><pre><code>import java.io.IOException;
+
+import synapticloop.newznab.api.NewzNabApi;
+import synapticloop.newznab.api.exception.NewzNabApiException;
+import synapticloop.newznab.api.response.RegistrationResponse;
+
+public class Register {
+
+	public static void main(String[] args) throws IOException, NewzNabApiException {
+		NewzNabApi newzNabApi = new NewzNabApi("YOUR_API_URL", "YOUR_API_KEY");
+		RegistrationResponse registrationResponse = newzNabApi.register("something@example.com");
+
+		System.out.println("Congratulations, you have just registered with the following details:");
+		System.out.println("  username: " + registrationResponse.getUsername());
+		System.out.println("  password: " + registrationResponse.getPassword());
+		System.out.println("   api key: " + registrationResponse.getApiKey());
+	}
+}
+</code></pre><blockquote>see <code><a href="src/test/java/Register.java">Register.java</a></code> </blockquote><h4>User details</h4><p>Retrieve your user details, which include the membership level, the number of grabs per day and when the user was created (i.e. joined).</p><pre><code>import java.io.IOException;
+
+import synapticloop.newznab.api.NewzNabApi;
+import synapticloop.newznab.api.exception.NewzNabApiException;
+import synapticloop.newznab.api.response.UserResponse;
+
+public class User {
+
+	public static void main(String[] args) throws IOException, NewzNabApiException {
+		NewzNabApi newzNabApi = new NewzNabApi("YOUR_API_URL", "YOUR_API_KEY");
+		UserResponse userResponse = newzNabApi.getUser("your_username");
+
+		System.out.println("username: " + userResponse.getUsername());
+		System.out.println("    role: " + userResponse.getRole());
+		System.out.println("  joined: " + userResponse.getCreatedDate());
+
+		System.out.println("     number of api requests allowed per day: " + userResponse.getNumApiRequests());
+		System.out.println("number of download requests allowed per day: " + userResponse.getNumDownloadRequests());
+		System.out.println("                 number of grabbed releases: " + userResponse.getNumGrabs());
+
+
+		System.out.println("has a console view?: " + userResponse.getHasConsoleView());
+		System.out.println("  has a movie view?: " + userResponse.getHasMovieView());
+		System.out.println("  has a music view?: " + userResponse.getHasMusicView());
+	}
+}
+</code></pre><blockquote>see <code><a href="src/test/java/User.java">User.java</a></code> </blockquote><h4>Capabilities</h4><p>Determine the capabilities of the NewzNab indexer, which may vary from indexer to indexer.</p><pre><code>import java.io.IOException;
+import java.util.List;
+
+import synapticloop.newznab.api.NewzNabApi;
+import synapticloop.newznab.api.exception.NewzNabApiException;
+import synapticloop.newznab.api.response.CapabilitiesResponse;
+import synapticloop.newznab.api.response.model.Genre;
+import synapticloop.newznab.api.response.model.Group;
+import synapticloop.newznab.api.response.model.attributes.GenreAttributes;
+import synapticloop.newznab.api.response.model.attributes.GroupAttributes;
+
+public class Capabilities {
+
+	public static void main(String[] args) throws IOException, NewzNabApiException {
+		NewzNabApi newzNabApi = new NewzNabApi("YOUR_API_URL", "YOUR_API_KEY");
+		CapabilitiesResponse capabilitiesResponse = newzNabApi.getCapabilities();
+
+		// test whether the NewzNab indexer has specific searches
+		capabilitiesResponse.getHasAudioSearch();
+		capabilitiesResponse.getHasMovieSearch();
+		capabilitiesResponse.getHasTvSearch();
+		capabilitiesResponse.getHasBookSearch();
+
+		// get a list of the genres that the indexer has
+		List<Genre> genres = capabilitiesResponse.getGenres();
+		for (Genre genre : genres) {
+			List<GenreAttributes> genreAttributes = genre.getGenreAttributes();
+			for (GenreAttributes genreAttributesInner : genreAttributes) {
+				genreAttributesInner.getName(); // the name of the genre
+				genreAttributesInner.getCategory(); // the category which this genre relates to
+			}
+		}
+
+		// get a list of the groups
+		List<Group> groups = capabilitiesResponse.getGroups();
+		for (Group group : groups) {
+			List<GroupAttributes> groupAttributes = group.getGroupAttributes();
+			for (GroupAttributes groupAttributesInner : groupAttributes) {
+				groupAttributesInner.getName(); // the name of the usenet group
+				groupAttributesInner.getLastUpdate();  // when this group was last updated
+			}
+		}
+
+		// registration options
+		capabilitiesResponse.getIsRegistrationAvailable(); // is registration available
+		capabilitiesResponse.getIsRegistrationOpen();  // is registration open
+
+		capabilitiesResponse.getDefaultResultsLimit(); // the default number of results that are returned through a search or a feed
+		capabilitiesResponse.getMaxResultsLimit(); // the maximum results that can be returned through a search or a feed
+	}
+}
+</code></pre><blockquote>see <code><a href="src/test/java/Capabilities.java">Capabilities.java</a></code> </blockquote><h4>Cart Utilities</h4><p>The API can list the cart contents, add an item to the cart, and delete an item.</p><pre><code>import java.io.IOException;
+import java.util.List;
+
+import synapticloop.newznab.api.NewzNabApi;
+import synapticloop.newznab.api.exception.NewzNabApiException;
+import synapticloop.newznab.api.response.FeedResponse;
+import synapticloop.newznab.api.response.model.FeedItem;
+
+public class Cart {
+
+	public static void main(String[] args) throws IOException, NewzNabApiException {
+		NewzNabApi newzNabApi = new NewzNabApi("YOUR_API_URL", "YOUR_API_KEY");
+		FeedResponse feedResponse = newzNabApi.getFeedForCart();
+		List<FeedItem> feedItems = feedResponse.getFeedItems();
+		for (FeedItem feedItem : feedItems) {
+			System.out.println("You have an item in the cart: " + feedItem.getTitle());
+		}
+
+		// you can add something to the cart
+		newzNabApi.cartAdd("some-guid");
+
+		// and delete it again
+		newzNabApi.cartDelete("some-guid");
+
+	}
+}
+</code></pre><blockquote>see <code><a href="src/test/java/Cart.java">Cart.java</a></code> </blockquote></section></div></div></div></section><div id="footer">
+	<div class="container">
+		<div class="row 200% uniform">
+		</div>
+	</div>
+	<div class="copyright">
+		&copy; Synapticloop. All rights reserved.
+	</div>
+	<div class="copyright">
+		This page uses the 
+		<a href="https://pixelarity.com/gravity?ref=4951149295">Gravity</a> 
+		commercial template from 
+		<a href="https://pixelarity.com/?ref=4951149295">Pixelarity</a> 
+		which we thoroughly recommend.
+		</div>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.onvisible.min.js"></script>
+<script src="assets/js/jquery.poptrox.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+<script type="text/javascript">
+	var _paq = _paq || [];
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+		var u="//piwik.synapticloop.com/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', 13]);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	})();
+</script>
+<noscript><p><img src="//piwik.synapticloop.com/piwik.php?idsite=13" style="border:0;" alt="" /></p></noscript>
+<script src="javascripts/prettify.js" type="text/javascript" ></script>
+</body></html>
