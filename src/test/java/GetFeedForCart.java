@@ -11,7 +11,7 @@ public class GetFeedForCart {
 	public static void main(String[] args) throws IOException, NewzNabApiException {
 		NewzNabApi newzNabApi = new NewzNabApi("YOUR_API_URL", "YOUR_API_KEY");
 		FeedResponse feedResponse = newzNabApi.getFeedForCart();
-		
+
 		List<FeedItem> feedItems = feedResponse.getFeedItems();
 		for (FeedItem feedItem : feedItems) {
 			System.out.println("Found an item in the cart: " + feedItem.getTitle());

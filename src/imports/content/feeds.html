@@ -1,13 +1,19 @@
 <h3>Feeds</h3>
 
 <p>
-	There are two types of feed available through the API, personal feeds and 
+	There are two types of feeds available through the API, personal feeds and 
 	site-wide feeds.  Personal feeds relate to the user account (tied to the 
 	<code>apikey</code>), while site wide feeds are based on the latest indexed 
 	results.
 </p>
 
 <h3>Personal Feeds</h3>
+
+<p>
+	Personal feeds are specific to the API key that is passed through the request.  
+	The <code>cart</code> feed can be interacted with by adding and deleting, the 
+	<code>MyMovies</code> and <code>MyShows</code> can only be listed.
+</p>
 
 <h4>My Cart (<code>getFeedForCart()</code>)</h4>
 
@@ -38,3 +44,113 @@
 <pre><code>{static src/test/java/GetFeedForMyShows.java}</code></pre>
 
 <blockquote>see <code><a href="src/test/java/GetFeedForMyShows.java">GetFeedForMyShows.java</a></code></blockquote>
+
+<h3>Site-Wide Feeds</h3>
+
+<h4>Site (<code>getFeedForSite()</code>)</h4>
+
+<p>
+	Retrieve the list of most recently indexed releases for the site, this includes 
+	all of the categories.
+</p>
+
+<pre><code>{static src/test/java/GetFeedForSite.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/GetFeedForSite.java">GetFeedForSite.java</a></code> 
+	<strong>NOTE:</strong> not all feeds are available on all indexer.
+</blockquote>
+
+
+<h4>Audio (<code>getFeedForAudio()</code>)</h4>
+
+<p>
+	Retrieve the list of most recently indexed releases for the audio category.
+</p>
+
+<pre><code>{static src/test/java/GetFeedForAudio.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/GetFeedForAudio.java">GetFeedForAudio.java</a></code> 
+	<strong>NOTE:</strong> not all feeds are available on all indexer.
+</blockquote>
+
+<h4>Console (<code>getFeedForConsoles()</code>)</h4>
+
+<p>
+	Retrieve the list of most recently indexed releases for the consoles category.
+</p>
+
+<pre><code>{static src/test/java/GetFeedForConsoles.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/GetFeedForConsoles.java">GetFeedForConsoles.java</a></code> 
+	<strong>NOTE:</strong> not all feeds are available on all indexer.
+</blockquote>
+
+<h4>Movies (<code>getFeedForMovies()</code>)</h4>
+
+<p>
+	Retrieve the list of most recently indexed releases for the movies category.
+</p>
+
+<pre><code>{static src/test/java/GetFeedForMovies.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/GetFeedForMovies.java">GetFeedForMovies.java</a></code> 
+	<strong>NOTE:</strong> not all feeds are available on all indexer.
+</blockquote>
+
+<h4>Other (<code>getFeedForOther()</code>)</h4>
+
+<p>
+	Retrieve the list of most recently indexed releases for the other category - i.e. 
+	indexed releases that could not be fit into any other category.
+</p>
+
+<pre><code>{static src/test/java/GetFeedForOther.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/GetFeedForOther.java">GetFeedForOther.java</a></code> 
+	<strong>NOTE:</strong> not all feeds are available on all indexer.
+</blockquote>
+
+<h4>PC (<code>getFeedForPc()</code>)</h4>
+
+<p>
+	Retrieve the list of most recently indexed releases for the PC category.
+</p>
+
+<pre><code>{static src/test/java/GetFeedForPc.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/GetFeedForPc.java">GetFeedForPc.java</a></code> 
+	<strong>NOTE:</strong> not all feeds are available on all indexer.
+</blockquote>
+
+<h4>TV (<code>getFeedForTv()</code>)</h4>
+
+<p>
+	Retrieve the list of most recently indexed releases for the TV category.
+</p>
+
+<pre><code>{static src/test/java/GetFeedForTv.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/GetFeedForTv.java">GetFeedForTv.java</a></code> 
+	<strong>NOTE:</strong> not all feeds are available on all indexer.
+</blockquote>
+
+<h4>XXX (adult-content) (<code>getFeedForXXX()</code>)</h4>
+
+<p>
+	Retrieve the list of most recently indexed releases for the XXX (adult) category.
+</p>
+
+<pre><code>{static src/test/java/GetFeedForXXX.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/GetFeedForXXX.java">GetFeedForXXX.java</a></code> 
+	<strong>NOTE:</strong> not all feeds are available on all indexer.
+</blockquote>
+
