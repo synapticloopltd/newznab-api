@@ -339,25 +339,25 @@ public class NewzNabApi {
 	}
 
 	public SearchResponse searchMovie(String query) throws NewzNabApiException, IOException {
-		return(searchMovie(query, null, -1, -1, -1, -1, false, false));
+		return(searchMovie(query, null, -1, -1, -1, null, false, false));
 	}
 
 	public SearchResponse searchMovie(String query, long offset, int limit) throws NewzNabApiException, IOException {
-		return(searchMovie(query, null, offset, limit, -1, -1, false, false));
+		return(searchMovie(query, null, offset, limit, -1, null, false, false));
 	}
 
 	public SearchResponse searchMovie(String query, String genre) throws NewzNabApiException, IOException {
-		return(searchMovie(query, genre, -1, -1, -1, -1, false, false));
+		return(searchMovie(query, genre, -1, -1, -1, null, false, false));
 	}
 
 	public SearchResponse searchMovie(String query, String genre, long offset, int limit) throws NewzNabApiException, IOException {
-		return(searchMovie(query, genre, offset, limit, -1, -1, false, false));
+		return(searchMovie(query, genre, offset, limit, -1, null, false, false));
 	}
 
 	public SearchResponse searchMovie(String query, String genre, long offset, 
 			int limit, 
 			int maxAgeDays, 
-			int imdbId,
+			String imdbId,
 			boolean deleteFromCart, 
 			boolean returnExtendedAttributes) throws NewzNabApiException, IOException {
 
@@ -371,7 +371,7 @@ public class NewzNabApi {
 
 		addIntegerParameter(parameters, KEY_REQUEST_PARAMETER_LIMIT, limit);
 		addIntegerParameter(parameters, KEY_REQUEST_PARAMETER_MAX_AGE, maxAgeDays);
-		addIntegerParameter(parameters, KEY_REQUEST_PARAMETER_IMDB_ID, imdbId);
+		addStringParameter(parameters, KEY_REQUEST_PARAMETER_IMDB_ID, imdbId);
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_GENRE, genre);
 
 		addBooleanParameter(parameters, KEY_REQUEST_PARAMETER_DELETE_FROM_CART, deleteFromCart);
@@ -598,7 +598,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForCart() throws IOException, NewzNabApiException {
-		return(getFeedCategory(VALUE_REQUEST_PARAMETER_FEED_CART));
+		return(getFeedForCategory(VALUE_REQUEST_PARAMETER_FEED_CART));
 	}
 
 	/**
@@ -610,7 +610,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForSite() throws IOException, NewzNabApiException {
-		return(getFeedCategory(VALUE_REQUEST_PARAMETER_FEED_SITE));
+		return(getFeedForCategory(VALUE_REQUEST_PARAMETER_FEED_SITE));
 	}
 
 	/**
@@ -622,7 +622,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForMyShows() throws IOException, NewzNabApiException {
-		return(getFeedCategory(VALUE_REQUEST_PARAMETER_FEED_MY_SHOWS));
+		return(getFeedForCategory(VALUE_REQUEST_PARAMETER_FEED_MY_SHOWS));
 	}
 
 	/**
@@ -634,7 +634,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForMyMovies() throws IOException, NewzNabApiException {
-		return(getFeedCategory(VALUE_REQUEST_PARAMETER_FEED_MY_MOVIES));
+		return(getFeedForCategory(VALUE_REQUEST_PARAMETER_FEED_MY_MOVIES));
 	}
 
 	/**
@@ -647,7 +647,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForMovies() throws IOException, NewzNabApiException {
-		return(getFeedCategory(CATEGORY_MOVIES));
+		return(getFeedForCategory(CATEGORY_MOVIES));
 	}
 
 	/**
@@ -660,7 +660,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForConsoles() throws IOException, NewzNabApiException {
-		return(getFeedCategory(CATEGORY_CONSOLE));
+		return(getFeedForCategory(CATEGORY_CONSOLE));
 	}
 
 	/**
@@ -673,7 +673,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForAudio() throws IOException, NewzNabApiException {
-		return(getFeedCategory(CATEGORY_AUDIO));
+		return(getFeedForCategory(CATEGORY_AUDIO));
 	}
 
 	/**
@@ -686,7 +686,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForPc() throws IOException, NewzNabApiException {
-		return(getFeedCategory(CATEGORY_PC));
+		return(getFeedForCategory(CATEGORY_PC));
 	}
 
 	/**
@@ -699,7 +699,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForTv() throws IOException, NewzNabApiException {
-		return(getFeedCategory(CATEGORY_TV));
+		return(getFeedForCategory(CATEGORY_TV));
 	}
 
 	/**
@@ -712,7 +712,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForXXX() throws IOException, NewzNabApiException {
-		return(getFeedCategory(CATEGORY_XXX));
+		return(getFeedForCategory(CATEGORY_XXX));
 	}
 
 	/**
@@ -725,7 +725,7 @@ public class NewzNabApi {
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
 	public FeedResponse getFeedForOther() throws IOException, NewzNabApiException {
-		return(getFeedCategory(CATEGORY_OTHER));
+		return(getFeedForCategory(CATEGORY_OTHER));
 	}
 
 	/**
@@ -738,7 +738,7 @@ public class NewzNabApi {
 	 * @throws IOException if there was an error communicating with the API
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
-	public FeedResponse getFeedCategory(int category) throws IOException, NewzNabApiException {
+	public FeedResponse getFeedForCategory(int category) throws IOException, NewzNabApiException {
 		Map<String, String> parameters = new HashMap<String, String>();
 
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_R, apiKey);
