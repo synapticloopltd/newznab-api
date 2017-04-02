@@ -1,69 +1,85 @@
-<h3>templar-gen</h3>
+<h3>newznab Api</h3>
 
 <p>
-	templar-gen was coded in a couple of hours to generate static pages just like 
-	this one.  It is a very simple system that generates static pages utilising the 
-	templar templating language from synapticloop.
+	Easily query a NewzNab powered Usenet Indexer in Java.  The API gives you 
+	programmatic access to the following functions:
 </p>
 
-<h3>Page cutting</h3>
+<h4>Quick Start</h4>
 
-<p>The generation of pages revolves around determining the common parts of the 
-page, extracting them and including them in multiple files.</p>
+<pre><code>{pre
+import synapticloop.newznab.api.NewzNabApi;
+import synapticloop.newznab.api.response.SearchResponse;
 
-<p>The basic commands for including snippets of a page are one of:</p>
+...
 
-<ol>
-	<li><code>{{import filename}</code> when you want to include the file and parse the contents (with templar)</li>
-	<li><code>{{static filename}</code> when you want to include the static contents of the file without parsing the contents</li>
-	<li><code>{{statichtml filename}</code> when you want to include the static contents of the file and output escaped HTML</li>
-</ol>
 
-<h3>usage</h3>
+NewzNabApi newzNabApi = new NewzNabApi("YOUR_API_URL", "YOUR_API_KEY");
+SearchResponse searchResponse = newzNapApi.search("something");
 
-<p>
-	Get the latest code from <a href="https://github.com/synapticloop/templar-gen/releases">the templar-gen</a> 
-	releases directory.
-<p>
-
-<p><em>(You will want the <code>templar-gen-&lt;version&gt;<strong>-all</strong>.jar</code> jar file)</em></p>
-
-<h4>Command line</h4>
-
-<p>run it with the following</p>
-
-<pre><code>
-java -jar templar-gen.jar &lt;input_directory&gt; &lt;output_directory&gt;
-</code></pre>
-
-<p>You can of course use <a href="/ant.html">Ant</a> or <a href="/gradle.html">Gradle</a></p>
-
-<h4>Which files are generated</h4>
+pre}</code></pre>
 
 <p>
-	In order for pages to be generated, you need to have both the file and a 
-	context file in the directory that is going to be created.  If you have a 
-	look at the source code for this site - you will see the layout.
+	The <code>newzNabApi</code> object contains all of the methods required to 
+	interact with the API.  See the <a href="https://raw.githubusercontent.com/synapticloopltd/newznab-api/master/src/test/java/synapticloop/newznab/api/Main.java">Main.java</a> 
+	file for a semi-comprehensive runnable example.
+	
 </p>
 
-<p>For example, in the src directory:</p>
+<h4>Search</h4>
+
+<p>
+	Search the indexer, with paginated results.  The search can be narrowed down 
+	to specific categories, or (if available) specific search functions can be used.
+</p>
+
+<p><a href="search.html">See the search section</a></p>
+
+<h4>Feeds</h4>
+
+<p>
+	Various feeds, both personal and site wide
+</p>
+
+<p><a href="feeds.html">See the feeds section</a></p>
+
+<p>Personal feeds</p>
 
 <ul>
-	<li><code>index.html</code> this is the index.html page</li>
-	<li><code>index.html.context</code> this is where you can place variables for the index.html page</li>
+	<li><strong>My Cart</strong> - All the items that you have added to your cart</li>
+	<li><strong>My Movies</strong> - The list of movies that you have saved in the 'My Movies' section</li>
+	<li><strong>My Shows</strong> - the list of TV shows that you have saved in the 'My Shows' section</li>
 </ul>
 
-<p>Having the <code>.context</code> file means that the file will be generated into the <code>output_directory</code></p>
+<p>Site wide feeds</p>
 
-<p>This page was generated with the following command line:</p>
-
-<pre><code>
-java -jar templar-gen.jar src .
-</code></pre>
-
-<h3>Need Help?</h3>
+<ul>
+	<li><strong>Movies</strong> - A list of the most recently indexed movies</li>
+	<li><strong>Audio</strong> - A list of the most recently indexed audio</li>
+	<li><strong>TV</strong> - A list of the most recently indexed TV Shows</li>
+	<li><strong>PC</strong> - A list of the most recently indexed PC (i.e. applications)</li>
+	<li><strong>Books</strong> - A list of the most recently indexed books</li>
+	<li><strong>Consoles</strong> - A list of the most recently indexed console games and utilities</li>
+	<li><strong>Other</strong> - A list of the most recently indexed other - those that could not be ascribed a category</li>
+	<li><strong>Site</strong> - A list of the most recently indexed NZBs from all categories</li>
+	<li><strong>XXX</strong> - A list of the most recently indexed adult content</li>
+</ul>
 
 <p>
-	There is copious documentation for the templar templating engine over at 
-	<a href="https://synapticloop.github.io/templar/">https://synapticloop.github.io/templar/</a>
+	Note that not all feeds may be available on all indexers
 </p>
+
+<h4>Comments</h4>
+
+<p>
+	Add or list comments for indexed releases.
+</p>
+
+<h4>User functions</h4>
+
+<ul>
+	<li><strong>Register</strong></li>
+	<li><strong>User details</strong></li>
+	<li><strong>Capabilities</strong></li>
+	<li><strong>Cart Utilities</strong></li>
+</ul>

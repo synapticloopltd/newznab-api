@@ -1,0 +1,56 @@
+<!doctype html><html><head><title>newznab API by synapticloop</title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]--><link rel="stylesheet" href="assets/css/main.css" /><!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]--><script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script></head><body><div id="header"><h1 id="logo"><a href="http://synapticloop.github.io/">Synapticloop</a> :: <a href="index.html">newznab API</a></h1><nav id="nav"><ul><li><a href="#">Projects</a><ul><li><a href="https://synapticloop.github.io/h2zero/"><i class="icon fa-database"></i> h2zero</a></li><li><a href="https://github.com/synapticloop/backblaze-b2-java-api/"><i class="icon fa-puzzle-piece"></i> backblaze b2 java api</a></li><li><a href="https://synapticloop.github.io/templar/"><i class="icon fa-shield"></i> templar</a></li><li><a href="https://synapticloop.github.io/templar-gen/"><i class="icon fa-gears"></i> templar gen</a></li><li><a href="https://synapticloop.github.io/linode-api/"><i class="icon fa-puzzle-piece"></i> linode java api</a></li><li><a href="https://github.com/synapticloopltd/scaleway-java-api/"><i class="icon fa-puzzle-piece"></i> scaleway java api</a></li><li><a href="https://synapticloopltd.github.io/newznab-api/"><i class="icon fa-puzzle-piece"></i> newznab java api</a></li><li><a href="https://synapticloopltd.github.io/gradle-plugin-java-create/"><i class="icon fa-gears"></i> gradle plugin creator for java</a></li><li><a href="https://synapticloopltd.github.io/recipease/"><i class="icon fa-spoon"></i> recipease</a></li><li><a href="https://synapticloop.github.io/routemaster/"><i class="icon fa-bus"></i> routemaster</a></li></ul></li></ul></nav></div><section id="banner"><h2>Welcome to newznab api</h2><p>A Java API for connecting to NewzNab powered Usenet Indexers</p></section><section id="main"><div class="container"><div class="row 200%"><div class="4u 12u$(medium)"><section id="sidebar"><section><h3>newznab-api</h3><p>A Java API for connecting to NewzNab powered Usenet Indexers</p><hr /><ul><li><a href="index.html">Home</a></li><li><a href="searching.html">Searching</a></li><li><a href="feeds.html">Feeds</a></li><li><a href="comments.html">Comments</a></li><li><a href="user-functions.html">User functions</a></li></ul></section><hr /><section><h3>View this project on github</h3><footer><ul class="actions"><li><a href="https://github.com/synapticloopltd/newznab-api" class="button small alt">GitHub Project</a></li></ul></footer></section><hr /><section>
+	<h3>templar-gen</h3>
+	<p>
+		This project is maintained by <a href="https://github.com/synapticloop">synapticloop</a> 
+		and these pages were generated with 
+		<a href="https://github.com/synapticloop/templar-gen/">synapticloop templar-gen</a>
+	</p>
+</section>
+</section></div><div class="8u$ 12u$(medium) important(medium)"><section id="content"><h3>newznab Api</h3><p>Easily query a NewzNab powered Usenet Indexer in Java.  The API gives you programmatic access to the following functions:</p><h4>Quick Start</h4><pre><code>import synapticloop.newznab.api.NewzNabApi;
+import synapticloop.newznab.api.response.SearchResponse;
+
+...
+
+
+NewzNabApi newzNabApi = new NewzNabApi("YOUR_API_URL", "YOUR_API_KEY");
+SearchResponse searchResponse = newzNapApi.search("something");
+</code></pre><p>The <code>newzNabApi</code> object contains all of the methods required to interact with the API.  See the <a href="https://raw.githubusercontent.com/synapticloopltd/newznab-api/master/src/test/java/synapticloop/newznab/api/Main.java">Main.java</a> file for a semi-comprehensive runnable example.</p><h4>Search</h4><p>Search the indexer, with paginated results.  The search can be narrowed down to specific categories, or (if available) specific search functions can be used.</p><p><a href="search.html">See the search section</a></p><h4>Feeds</h4><p>Various feeds, both personal and site wide</p><p><a href="feeds.html">See the feeds section</a></p><p>Personal feeds</p><ul><li><strong>My Cart</strong> - All the items that you have added to your cart</li><li><strong>My Movies</strong> - The list of movies that you have saved in the 'My Movies' section</li><li><strong>My Shows</strong> - the list of TV shows that you have saved in the 'My Shows' section</li></ul><p>Site wide feeds</p><ul><li><strong>Movies</strong> - A list of the most recently indexed movies</li><li><strong>Audio</strong> - A list of the most recently indexed audio</li><li><strong>TV</strong> - A list of the most recently indexed TV Shows</li><li><strong>PC</strong> - A list of the most recently indexed PC (i.e. applications)</li><li><strong>Books</strong> - A list of the most recently indexed books</li><li><strong>Consoles</strong> - A list of the most recently indexed console games and utilities</li><li><strong>Other</strong> - A list of the most recently indexed other - those that could not be ascribed a category</li><li><strong>Site</strong> - A list of the most recently indexed NZBs from all categories</li><li><strong>XXX</strong> - A list of the most recently indexed adult content</li></ul><p>Note that not all feeds may be available on all indexers</p><h4>Comments</h4><p>Add or list comments for indexed releases.</p><h4>User functions</h4><ul><li><strong>Register</strong></li><li><strong>User details</strong></li><li><strong>Capabilities</strong></li><li><strong>Cart Utilities</strong></li></ul></section></div></div></div></section><div id="footer">
+	<div class="container">
+		<div class="row 200% uniform">
+		</div>
+	</div>
+	<div class="copyright">
+		&copy; Synapticloop. All rights reserved.
+	</div>
+	<div class="copyright">
+		This page uses the 
+		<a href="https://pixelarity.com/gravity?ref=4951149295">Gravity</a> 
+		commercial template from 
+		<a href="https://pixelarity.com/?ref=4951149295">Pixelarity</a> 
+		which we thoroughly recommend.
+		</div>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.onvisible.min.js"></script>
+<script src="assets/js/jquery.poptrox.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+<script type="text/javascript">
+	var _paq = _paq || [];
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+		var u="//piwik.synapticloop.com/";
+		_paq.push(['setTrackerUrl', u+'piwik.php']);
+		_paq.push(['setSiteId', 13]);
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	})();
+</script>
+<noscript><p><img src="//piwik.synapticloop.com/piwik.php?idsite=13" style="border:0;" alt="" /></p></noscript>
+<script src="javascripts/prettify.js" type="text/javascript" ></script>
+</body></html>

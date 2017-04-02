@@ -1,9 +1,23 @@
 plugins {
-	id 'synapticloop.templar-gen' version '1.4.1'
+	id 'java'
+	id 'eclipse'
+	id "maven"
+
+	id 'synapticloop.templar-gen' version '1.4.4'
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 repositories {
+	mavenLocal()
+	mavenCentral()
 	jcenter()
+}
+
+dependencies {
+	runtime 'synapticloop:newznab-api:1.0.0'
+	compile 'synapticloop:newznab-api:1.0.0'
 }
 
 templarGen {
