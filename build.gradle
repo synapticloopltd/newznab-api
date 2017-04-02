@@ -12,7 +12,7 @@ plugins {
 	id 'net.saliman.cobertura' version '2.4.0'
 
 	id 'synapticloop.copyrightr' version '1.1.2'
-	id 'synapticloop.documentr' version '2.6.1'
+	id 'synapticloop.documentr' version '2.9.0'
 }
 
 sourceCompatibility = 1.8
@@ -77,4 +77,76 @@ configurations.all {
 					'com.fasterxml.jackson.core:jackson-annotations:2.8.5',
 					'junit:junit:4.12'
 	}
+}
+
+def javaApiUrl = 'http://docs.oracle.com/javase/1.7.0/docs/api/'
+def groovyApiUrl = 'http://groovy.codehaus.org/gapi/'
+
+tasks.withType(Javadoc) {
+	options.links(javaApiUrl, groovyApiUrl)
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+	from sourceSets.main.allSource
+	classifier = 'sources'
+}
+
+build.finalizedBy(project.tasks.shadowJar)
+test.finalizedBy(project.tasks.cobertura)
+
+
+publishing {
+	publications {
+		Synapticloop(MavenPublication) {
+			from components.java
+			artifact sourcesJar
+			artifact javadocJar
+
+			groupId 'synapticloop'
+
+			artifactId 'newznab-api'
+
+			pom.withXml {
+				configurations.compile.resolvedConfiguration.firstLevelModuleDependencies.each { dep ->
+					asNode().dependencies[0].dependency.find {
+						it.artifactId[0].text() == dep.moduleName &&
+								it.groupId[0].text() == dep.moduleGroup
+					}.scope[0].value = 'compile'
+				}
+			}
+		}
+	}
+}
+
+bintray {
+	user = System.getenv('BINTRAY_USER')
+	key = System.getenv('BINTRAY_PASSWORD')
+
+	publications = [ 'Synapticloop' ]
+
+	publish = true
+
+	pkg {
+		repo = 'maven'
+		name = 'newznab-api'
+	}
+
+}
+
+github {
+	owner = 'synapticloopltd'
+	repo = archivesBaseName
+	if(System.getenv('GITHUB_TOKEN')) {
+		token = System.getenv('GITHUB_TOKEN')
+	}
+	tagName = version
+	name = version
+	assets = [
+		'build/libs/' + archivesBaseName + '-' + version + '.jar',
+	]
 }

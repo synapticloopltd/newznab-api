@@ -1,5 +1,8 @@
 {
 	"context": {
+		"githubGroup": "synapticloopltd",
+		"group": "synapticloopltd",
+		"bintrayGroup": "synapticloop"
 	},
 	"templates": [
 		{ "type":"inbuilt", "value":"jvm-compatability" },
@@ -13,8 +16,19 @@
 		{ "type": "toplink", "value": " <a name=\"#documentr_top\"></a>" },
 		{ "type": "tocbacktotop", "value": " <sup><sup>[top](#documentr_top)</sup></sup>" },
 
+		{ "type":"file", "value":"src/docs/overview.md" },
+
+		{ "type":"markup", "value":"\n\n```\n" },
+		{ "type":"file", "value":"src/test/java/synapticloop/newznab/api/Main.java" },
+		{ "type":"markup", "value":"\n```\n\n" },
+
 		{ "type":"inbuilt", "value":"gradle-build" },
 		{ "type":"inbuilt", "value":"gradle-test" },
+
+		{ "type":"inbuilt", "value":"logging-slf4j" },
+
+		{ "type":"inbuilt", "value":"publishing-github" },
+		{ "type":"inbuilt", "value":"publishing-bintray" },
 
 		{ "type":"inbuilt", "value":"dependencies" },
 
