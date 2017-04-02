@@ -38,6 +38,13 @@ public class Item extends BaseModel {
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
 
 	private static final String GUID = "guid";
+	private static final String KEY_USENETDATE = "usenetdate";
+	private static final String KEY_PASSWORD = "password";
+	private static final String KEY_COMMENTS = "comments";
+	private static final String KEY_FILES = "files";
+	private static final String KEY_GRABS = "grabs";
+	private static final String KEY_GROUP = "group";
+	private static final String KEY_POSTER = "poster";
 
 	@JsonProperty("title")        private String title;
 	@JsonProperty("guid")         private String detailsLink;
@@ -65,12 +72,12 @@ public class Item extends BaseModel {
 
 	public List<ItemAttribute> getItemAttributes() { return itemAttributes; }
 
-	public String getPoster() { return(getItemAttribute("poster")); }
+	public String getPoster() { return(getItemAttribute(KEY_POSTER)); }
 
-	public String getGroup() { return(getItemAttribute("group")); }
+	public String getGroup() { return(getItemAttribute(KEY_GROUP)); }
 
 	public int getNumGrabs() { 
-		String itemAttribute = getItemAttribute("grabs");
+		String itemAttribute = getItemAttribute(KEY_GRABS);
 		if(null != itemAttribute) {
 			try {
 				return(Integer.parseInt(itemAttribute));
@@ -82,7 +89,7 @@ public class Item extends BaseModel {
 	}
 
 	public int getNumFiles() { 
-		String itemAttribute = getItemAttribute("files");
+		String itemAttribute = getItemAttribute(KEY_FILES);
 		if(null != itemAttribute) {
 			try {
 				return(Integer.parseInt(itemAttribute));
@@ -94,7 +101,7 @@ public class Item extends BaseModel {
 	}
 
 	public int getNumComments() { 
-		String itemAttribute = getItemAttribute("comments");
+		String itemAttribute = getItemAttribute(KEY_COMMENTS);
 		if(null != itemAttribute) {
 			try {
 				return(Integer.parseInt(itemAttribute));
@@ -108,7 +115,7 @@ public class Item extends BaseModel {
 	public String getGuid() { return(getItemAttribute(GUID)); }
 
 	public Date getUsenetDate() {
-		String itemAttribute = getItemAttribute("usenetdate");
+		String itemAttribute = getItemAttribute(KEY_USENETDATE);
 		if(null != itemAttribute) {
 			try {
 				return(SIMPLE_DATE_FORMAT.parse(itemAttribute));
@@ -120,7 +127,7 @@ public class Item extends BaseModel {
 	}
 
 	public boolean getHasPassword() {
-		return("0".equals(getItemAttribute("password")));
+		return("0".equals(getItemAttribute(KEY_PASSWORD)));
 	}
 
 	public String getItemAttribute(String name) {
