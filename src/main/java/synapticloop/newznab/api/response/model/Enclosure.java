@@ -9,7 +9,7 @@ import synapticloop.newznab.api.response.BaseModel;
 import synapticloop.newznab.api.response.model.attributes.EnclosureAttributes;
 
 public class Enclosure extends BaseModel {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Channel.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Enclosure.class);
 
 	@JsonProperty("@attributes")  private EnclosureAttributes enclosureAttributes;
 

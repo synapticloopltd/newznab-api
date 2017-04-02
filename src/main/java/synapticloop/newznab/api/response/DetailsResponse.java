@@ -12,8 +12,8 @@ import synapticloop.newznab.api.response.model.Image;
 import synapticloop.newznab.api.response.model.Item;
 import synapticloop.newznab.api.response.model.attributes.Attribute;
 
-public class SearchResponse extends BaseModel {
-	private static final Logger LOGGER = LoggerFactory.getLogger(SearchResponse.class);
+public class DetailsResponse extends BaseModel {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DetailsResponse.class);
 
 	@JsonProperty("@attributes")  private Attribute attribute;
 	@JsonProperty("channel")  private Channel channel;

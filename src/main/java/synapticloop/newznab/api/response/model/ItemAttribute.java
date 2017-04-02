@@ -9,21 +9,14 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import synapticloop.newznab.api.response.BaseModel;
+import synapticloop.newznab.api.response.model.attributes.ItemAttributes;
 
 public class ItemAttribute extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ItemAttribute.class);
 
-	private String name = null;
-	private String value = null;
-
-	@JsonAnySetter
-	public void setAdditionalProperty(String name, Object value) {
-		this.name = name;
-		this.value = value.toString();
-	}
-
-	public String getName() { return name; }
-	public String getValue() { return value; }
+	@JsonProperty("@attributes") private ItemAttributes itemAttributes;
+	
+	public ItemAttributes getItemAttributes() { return itemAttributes; }
 
 	@Override
 	public Logger getLogger() { return(LOGGER); }

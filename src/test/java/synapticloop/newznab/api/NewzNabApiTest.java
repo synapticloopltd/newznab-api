@@ -73,7 +73,7 @@ public class NewzNabApiTest {
 
 	@Test(expected = NewzNabApiException.class)
 	public void testGetRegistrationClosed() throws IOException, NewzNabApiException {
-		newzNabApi.getRegistration("anon" + System.currentTimeMillis() + "@example.com");
+		newzNabApi.register("anon" + System.currentTimeMillis() + "@example.com");
 	}
 
 	@Test
@@ -86,7 +86,7 @@ public class NewzNabApiTest {
 		when(mockCloseableHttpClient.execute(any())).thenReturn(mockCloseableHttpResponse);
 		NewzNabApi newzNabApi = new NewzNabApi(mockCloseableHttpClient, "http://example.com/api");
 
-		RegistrationResponse registrationResponse = newzNabApi.getRegistration("anon@example.com");
+		RegistrationResponse registrationResponse = newzNabApi.register("anon@example.com");
 		assertEquals("uf8dff84", registrationResponse.getUsername());
 		assertEquals("cd20a675", registrationResponse.getPassword());
 		assertEquals("75a605dfc47c0edc8f4637d5677844e1", registrationResponse.getApikey());

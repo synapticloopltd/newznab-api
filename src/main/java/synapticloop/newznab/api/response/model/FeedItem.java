@@ -19,42 +19,40 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 import synapticloop.newznab.api.response.BaseModel;
 import synapticloop.newznab.api.response.SearchResponse;
+import synapticloop.newznab.api.response.model.attributes.EnclosureAttributes;
 import synapticloop.newznab.api.response.model.attributes.ItemAttributes;
 
-public class Item extends BaseModel {
+public class FeedItem extends BaseModel {
 	private static final String DEFAULT_DATE_FORMAT = "E, dd MMM yyyy HH:mm:ss Z";
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(Item.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FeedItem.class);
 
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
 	private static final String GUID = "guid";
 
 
-	@JsonProperty("title")        private String title;
-	@JsonProperty("guid")         private String detailsLink;
-	@JsonProperty("link")         private String nzbLink;
-	@JsonProperty("comments")     private String commentsLink;
+	@JsonProperty("title")         private String title;
+	@JsonProperty("guid")          private Guid guid;
+	@JsonProperty("link")          private String nzbLink;
+	@JsonProperty("comments")      private String commentsLink;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DEFAULT_DATE_FORMAT)
-	@JsonProperty("pubDate")      private Date publishDate;
+	@JsonProperty("pubDate")       private Date publishDate;
 
-	@JsonProperty("category")     private String categoryName;
-	@JsonProperty("description")  private String description;
-	@JsonProperty("enclosure")    private Enclosure enclosure;
-	@JsonProperty("attr")         private List<ItemAttribute> itemAttributes;
+	@JsonProperty("category")      private String categoryName;
+	@JsonProperty("description")   private String description;
+	@JsonProperty("enclosure")     private EnclosureAttributes enclosureAttributes;
+	@JsonProperty("newznab:attr")  private List<ItemAttributes> itemAttributes;
 
 	public String getTitle() { return title; }
-	public String getDetailsLink() { return detailsLink; }
 	public String getNzbLink() { return nzbLink; }
 	public String getCommentsLink() { return commentsLink; }
 	public Date getPublishDate() { return publishDate; }
 	public String getCategoryName() { return categoryName; }
 	public String getDescription() { return description; }
-	public Long getLength() { return(enclosure.getEnclosureAttributes().getLength()); }
-	public String getType() { return(enclosure.getEnclosureAttributes().getType()); }
 
 
-	public List<ItemAttribute> getItemAttributes() { return itemAttributes; }
+	public List<ItemAttributes> getItemAttributes() { return itemAttributes; }
 
 	public String getPoster() { return(getItemAttribute("poster")); }
 
@@ -96,7 +94,7 @@ public class Item extends BaseModel {
 		return 0; 
 	}
 
-	public String getGuid() { return(getItemAttribute(GUID)); }
+	public Guid getGuid() { return(guid); }
 
 	public Date getUsenetDate() {
 		String itemAttribute = getItemAttribute("usenetdate");
@@ -119,10 +117,9 @@ public class Item extends BaseModel {
 			return(null);
 		}
 
-		for (ItemAttribute itemAttribute : itemAttributes) {
-			ItemAttributes itemAttributesInner = itemAttribute.getItemAttributes();
-			if(name.equals(itemAttributesInner.getName())) {
-				return(itemAttributesInner.getValue());
+		for (ItemAttributes itemAttributes : itemAttributes) {
+			if(name.equals(itemAttributes.getName())) {
+				return(itemAttributes.getValue());
 			}
 		}
 		return(null);

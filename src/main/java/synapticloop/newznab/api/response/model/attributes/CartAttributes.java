@@ -9,14 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import synapticloop.newznab.api.response.BaseModel;
 
-public class ItemAttributes extends BaseModel {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ItemAttributes.class);
+public class CartAttributes extends BaseModel {
+	private static final Logger LOGGER = LoggerFactory.getLogger(CartAttributes.class);
 
-	@JsonProperty("name")   private String name;
-	@JsonProperty("value")   private String value;
+	@JsonProperty("id")  private String id;
 
-	public String getName() { return name; }
-	public String getValue() { return value; }
+	public String getId() { return id; }
 
 	@Override
 	public Logger getLogger() { return(LOGGER); }

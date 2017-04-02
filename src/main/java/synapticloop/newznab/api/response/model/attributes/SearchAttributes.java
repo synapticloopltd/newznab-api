@@ -15,7 +15,7 @@ public class SearchAttributes extends BaseModel {
 
 	private static final String YES = "yes";
 
-	@JsonProperty("available")      private boolean isAvailable;
+	@JsonProperty("available")        private boolean isAvailable;
 	@JsonProperty("supportedParams")  private List<String> supportedParams;
 
 
@@ -26,7 +26,6 @@ public class SearchAttributes extends BaseModel {
 
 	public boolean getIsAvailable() { return isAvailable; }
 	public List<String> getSupportedParams() { return supportedParams; }
-
 
 	@Override
 	public Logger getLogger() { return(LOGGER); }

@@ -8,15 +8,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import synapticloop.newznab.api.response.BaseModel;
-import synapticloop.newznab.api.response.SearchResponse;
-import synapticloop.newznab.api.response.model.attributes.LimitAttributes;
-import synapticloop.newznab.api.response.model.attributes.ServerAttributes;
 
 public class Searching extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Searching.class);
@@ -24,7 +18,28 @@ public class Searching extends BaseModel {
 	@JsonProperty("search")  private Search search;
 	@JsonProperty("tv-search")  private Search tvSearch;
 	@JsonProperty("movie-search")  private Search movieSearch;
+	@JsonProperty("audio-search")  private Search audioSearch;
+//	@JsonProperty("book-search")  private Search bookSearch;
 
+	public boolean getHasSearch() {
+		return(hasSearch(search));
+	}
+
+	public boolean getHasTvSearch() {
+		return(hasSearch(tvSearch));
+	}
+
+	public boolean getHasMovieSearchTv() {
+		return(hasSearch(movieSearch));
+	}
+
+	public boolean getHasAudioSearchTv() {
+		return(hasSearch(audioSearch));
+	}
+
+	private boolean hasSearch(Search search) {
+		return(null != search && search.getSearchAttributes().getIsAvailable());
+	}
 	@Override
 	public Logger getLogger() { return(LOGGER); }
 }

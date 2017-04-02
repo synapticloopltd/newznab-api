@@ -19,5 +19,4 @@ public class Response extends BaseModel {
 
 	@Override
 	public Logger getLogger() { return(LOGGER); }
-
 }

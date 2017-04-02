@@ -30,8 +30,9 @@ import synapticloop.newznab.api.exception.NewzNabApiException;
 import synapticloop.newznab.api.response.CapabilitiesResponse;
 import synapticloop.newznab.api.response.RegistrationResponse;
 import synapticloop.newznab.api.response.SearchResponse;
+import synapticloop.newznab.api.response.model.Item;
 
-public class CapabilitiesTest {
+public class GetNzbTest {
 
 	private NewzNabApi newzNabApi;
 
@@ -43,10 +44,23 @@ public class CapabilitiesTest {
 		newzNabApi = new NewzNabApi(httpClient, "http://lolo.sickbeard.com/api");
 	}
 
+	@Test(expected=NewzNabApiException.class)
+	public void testNullNfo() throws IOException, NewzNabApiException {
+		newzNabApi.nfo(null);
+	}
+
 	@Test
 	public void testGetNfo() throws IOException, NewzNabApiException {
-		CapabilitiesResponse capabilitiesResponse = newzNabApi.capabilities();
-		assertNotNull(capabilitiesResponse);
+		// find a search result
+		SearchResponse searchResponse = newzNabApi.search("tv", 0, 1, -1, false, false, null, null);
+		assertNotNull(searchResponse);
 
+		assertNotNull(searchResponse.getVersion());
+		assertTrue(searchResponse.getOffset() == 0);
+		assertTrue(searchResponse.getTotal() > 1);
+		assertTrue(searchResponse.getItems().size() == 1);
+		Item item = searchResponse.getItems().get(0);
+		String guid = item.getGuid();
+		assertNotNull(newzNabApi.nfo(guid));
 	}
 }
