@@ -60,24 +60,73 @@ public class Search {
 }
 </code></pre><blockquote>see <code><a href="src/test/java/Search.java">Search.java</a></code> </blockquote><h4>Specific Search</h4><p>Some indexers also support more specific (or targeted searches) with additional options that are only pertinent to the category.</p><p>this relies on the functionality of the indexer to be present, and that the lookups on the releases can be found.</p><h5>Book</h5><p>The book search allows search by title and author</p><h5>Music</h5><p>The music search allows search by year, label, album, artist and track</p><h5>TV</h5><p>The TV search allows search by episode and season numbers along with identifiers from popular TV index sites (TV Rage, TV Maze, TVDB)</p><h5>Movie</h5><p>The movie search allows search by genre and the IMBD id</p><pre><code>import java.io.IOException;
 
-import synapticloop.newznab.api.Category;
 import synapticloop.newznab.api.NewzNabApi;
 import synapticloop.newznab.api.exception.NewzNabApiException;
 import synapticloop.newznab.api.response.SearchResponse;
 
-public class Search {
+public class SpecificSearch {
 
 	public static void main(String[] args) throws IOException, NewzNabApiException {
 		NewzNabApi newzNabApi = new NewzNabApi("YOUR_API_URL", "YOUR_API_KEY");
-		SearchResponse searchResponse = newzNabApi.search("something", 0, new int[] { 
-				Category.CATEGORY_AUDIO_AUDIOBOOK, 
-				Category.CATEGORY_AUDIO_VIDEO}
+
+		// use the Book Search
+		SearchResponse searchBook = newzNabApi.searchBook(
+				"query", // the search term
+				0, // the offset for the result
+				100, // the maximum number of results to return
+				"this is the title", // the title of the book
+				"author's name", // the author
+				100, // the maximum number of days to search back for
+				false, // whether to delete from the cart 
+				false // whether to return extended attributes in the results
 				);
 
-		// now do something with the results
+		// use the Movies Search
+		newzNabApi.searchMovie(
+				"query", // the search term
+				"genre", // the genre of the film 
+				0, // the offset for the result
+				100, // the maximum number of results to return
+				100, // the maximum number of days to search back for
+				"imdbId", // the imdbId
+				false, // whether to delete from the cart 
+				false // whether to return extended attributes in the results
+				);
+
+		// use the TV Search 
+		newzNabApi.searchTv(
+				"query", // the search term
+				1, // the season
+				1,// the episode 
+				0, // the offset for the result
+				100, // the maximum number of results to return
+				100, // the maximum number of days to search back for
+				100, // the rage Id, 
+				100, // the tvdb Id, 
+				100, // the tv Maze Id, 
+				false, // whether to delete from the cart 
+				false // whether to return extended attributes in the results
+				);
+
+		newzNabApi.searchMusic(
+				"query", // the search term
+				0, // the offset for the result
+				100, // the maximum number of results to return
+				"album", // the album
+				"artist", // the artist
+				"label", // the label
+				"track", // the track 
+				2000, // the year of release
+				new String[0], // the genres to search within
+				new int[0] , // the array of categories
+				100, // the maximum number of days to search back for
+				false, // whether to delete from the cart 
+				false // whether to return extended attributes in the results
+				);
+
 	}
 }
-</code></pre><blockquote>see <code><a href="src/test/java/SearchSpecific.java">SearchSpecific.java</a></code> </blockquote></section></div></div></div></section><div id="footer">
+</code></pre><blockquote>see <code><a href="src/test/java/SpecificSearch.java">SpecificSearch.java</a></code> </blockquote></section></div></div></div></section><div id="footer">
 	<div class="container">
 		<div class="row 200% uniform">
 		</div>
