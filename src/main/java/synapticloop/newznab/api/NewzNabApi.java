@@ -106,7 +106,7 @@ public class NewzNabApi {
 
 
 	/**
-	 * Instantiate the NewzNab API
+	 * Instantiate the NewzNab API without any credentials
 	 * 
 	 * @param apiUrl the API endpoint URL to connect to 
 	 */
@@ -114,6 +114,12 @@ public class NewzNabApi {
 		this(apiUrl, null);
 	}
 
+	/**
+	 * Instantiate the NewzNab API with an enpoint URL and an API key
+	 * 
+	 * @param apiUrl The URL to connect to
+	 * @param apiKey The api Key for access
+	 */
 	public NewzNabApi(String apiUrl, String apiKey) {
 		this(HttpClients.createDefault(), apiUrl, apiKey);
 	}
@@ -130,7 +136,7 @@ public class NewzNabApi {
 	}
 
 	/**
-	 * Get the capabilities that the NewzNab API contains
+	 * Get the capabilities that the NewzNab API can respond to
 	 * 
 	 * @return the capabilities response
 	 * 
@@ -144,7 +150,6 @@ public class NewzNabApi {
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
 		return(parseResponse(httpResponse, CapabilitiesResponse.class));
-
 	}
 
 	/**
@@ -164,7 +169,7 @@ public class NewzNabApi {
 		parameters.put(KEY_REQUEST_PARAMETER_EMAIL, emailAddress);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(new RegistrationResponse(EntityUtils.toString(httpResponse.getEntity())));
+		return(parseResponse(httpResponse, RegistrationResponse.class, true));
 	}
 
 	/**

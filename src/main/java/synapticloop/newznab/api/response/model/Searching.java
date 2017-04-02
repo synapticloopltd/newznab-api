@@ -33,7 +33,7 @@ public class Searching extends BaseModel {
 	@JsonProperty("book-search")  private Search bookSearch;
 
 	/**
-	 * Return whether this service has a search functionality available
+	 * Return whether this service has a search functionality available.
 	 * 
 	 * @return whether there is a search function for this service
 	 */

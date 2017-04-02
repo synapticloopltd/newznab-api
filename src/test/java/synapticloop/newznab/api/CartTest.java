@@ -42,15 +42,14 @@ public class CartTest {
 
 	@Before
 	public void setup() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
-		CloseableHttpClient httpClient = HttpUtils.getDefaultClient();
 		initMocks(this);
 
 		String newzNabApiUrl = System.getenv("NEWZNAB_API_URL");
 		if(null == newzNabApiUrl) {
-			newzNabApi = new NewzNabApi(httpClient, "http://lolo.sickbeard.com/api");
+			newzNabApi = new NewzNabApi("http://lolo.sickbeard.com/api");
 		} else {
 			String newzNabApiKey = System.getenv("NEWZNAB_API_KEY");
-			newzNabApi = new NewzNabApi(httpClient, newzNabApiUrl, newzNabApiKey);
+			newzNabApi = new NewzNabApi(newzNabApiUrl, newzNabApiKey);
 		}
 	}
 

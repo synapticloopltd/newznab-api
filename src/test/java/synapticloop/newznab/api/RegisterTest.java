@@ -33,6 +33,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.apache.tools.ant.filters.StringInputStream;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,7 +50,7 @@ import synapticloop.newznab.api.response.RegistrationResponse;
 @PowerMockIgnore({ "javax.net.ssl.*", "javax.management.*" })
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(EntityUtils.class)
-public class NewzNabApiTest {
+public class RegisterTest {
 	private NewzNabApi newzNabApi;
 	@Mock private CloseableHttpClient mockCloseableHttpClient = null; 
 	@Mock private CloseableHttpResponse mockCloseableHttpResponse = null; 
@@ -65,12 +66,6 @@ public class NewzNabApiTest {
 		newzNabApi = new NewzNabApi(httpClient, "http://lolo.sickbeard.com/api");
 	}
 
-	@Test
-	public void testGetCaps() throws IOException, NewzNabApiException {
-		CapabilitiesResponse capsResponse = newzNabApi.capabilities();
-		assertNotNull(capsResponse);
-	}
-
 	@Test(expected = NewzNabApiException.class)
 	public void testGetRegistrationClosed() throws IOException, NewzNabApiException {
 		newzNabApi.register("anon" + System.currentTimeMillis() + "@example.com");
@@ -81,15 +76,15 @@ public class NewzNabApiTest {
 		PowerMockito.mockStatic(EntityUtils.class);
 		when(mockStatusLine.getStatusCode()).thenReturn(200);
 		when(mockCloseableHttpResponse.getStatusLine()).thenReturn(mockStatusLine);
-		when(EntityUtils.toString(mockHttpEntity)).thenReturn("<?xml version=\"1.0\" encoding=\"UTF-8\"?><register username=\"uf8dff84\" password=\"cd20a675\" apikey=\"75a605dfc47c0edc8f4637d5677844e1\"/>");
 		when(mockCloseableHttpResponse.getEntity()).thenReturn(mockHttpEntity);
+		when(mockHttpEntity.getContent()).thenReturn(new StringInputStream("<?xml version=\"1.0\" encoding=\"UTF-8\"?><register username=\"uf8dff84\" password=\"cd20a675\" apikey=\"75a605dfc47c0edc8f4637d5677844e1\"/>"));
 		when(mockCloseableHttpClient.execute(any())).thenReturn(mockCloseableHttpResponse);
 		NewzNabApi newzNabApi = new NewzNabApi(mockCloseableHttpClient, "http://example.com/api");
 
 		RegistrationResponse registrationResponse = newzNabApi.register("anon@example.com");
 		assertEquals("uf8dff84", registrationResponse.getUsername());
 		assertEquals("cd20a675", registrationResponse.getPassword());
-		assertEquals("75a605dfc47c0edc8f4637d5677844e1", registrationResponse.getApikey());
+		assertEquals("75a605dfc47c0edc8f4637d5677844e1", registrationResponse.getApiKey());
 	}
 	
 }

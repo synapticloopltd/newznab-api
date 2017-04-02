@@ -38,10 +38,9 @@ public class NfoTest {
 
 	@Before
 	public void setup() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
-		CloseableHttpClient httpClient = HttpUtils.getDefaultClient();
 		initMocks(this);
 
-		newzNabApi = new NewzNabApi(httpClient, "http://lolo.sickbeard.com/api");
+		newzNabApi = new NewzNabApi("http://lolo.sickbeard.com/api");
 	}
 
 	@Test(expected=NewzNabApiException.class)

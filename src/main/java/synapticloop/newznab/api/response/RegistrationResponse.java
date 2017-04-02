@@ -5,30 +5,24 @@ import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import synapticloop.newznab.api.exception.NewzNabApiException;
+import synapticloop.newznab.api.response.model.Register;
 
-public class RegistrationResponse extends BaseReponse {
+public class RegistrationResponse extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationResponse.class);
-	private final String password;
-	private final String username;
-	private final String apikey;
 
-	public RegistrationResponse(String xml) throws NewzNabApiException {
-		super(XML.toJSONObject(xml));
-		JSONObject registerObject = this.readObject("register");
-		this.password = this.readString(registerObject, "password");
-		this.username = this.readString(registerObject, "username");
-		this.apikey = this.readString(registerObject, "apikey");
-	}
+	@JsonProperty("register")  private Register register;
+
+	public String getPassword() { return this.register.getPassword(); }
+
+	public String getUsername() { return this.register.getUsername(); }
+
+	public String getApiKey() { return this.register.getApiKey(); }
 
 	@Override
-	protected Logger getLogger() {
+	public Logger getLogger() {
 		return(LOGGER);
 	}
-
-	public String getPassword() { return this.password; }
-
-	public String getUsername() { return this.username; }
-
-	public String getApikey() { return this.apikey; }
 }
