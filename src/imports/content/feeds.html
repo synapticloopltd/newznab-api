@@ -7,6 +7,33 @@
 	results.
 </p>
 
+<p>Quick links</p>
+
+<ul>
+	<li>Personal feed for:
+		<ul>
+			<li><a href="#personal-cart">My Cart</a></li>
+			<li><a href="#personal-movies">My Movies</a></li>
+			<li><a href="#personal-shows">My Shows</a></li>
+		</ul>
+	</li>
+</ul>
+<ul>
+	<li>Site wide feed for:
+		<ul>
+			<li><a href="#site-site">the latest indexed releases</a></li>
+			<li><a href="#site-category">an arbitrary category</a></li>
+			<li><a href="#site-audio">the latest audio releases</a></li>
+			<li><a href="#site-console">the latest console releases</a></li>
+			<li><a href="#site-movies">the latest movies releases</a></li>
+			<li><a href="#site-other">the latest other releases</a></li>
+			<li><a href="#site-pc">the latest pc releases</a></li>
+			<li><a href="#site-tv">the latest tv releases</a></li>
+			<li><a href="#site-xxx">the latest xxx releases</a></li>
+		</ul>
+	</li>
+</ul>
+
 <h3>Personal Feeds</h3>
 
 <p>
@@ -15,7 +42,7 @@
 	<code>MyMovies</code> and <code>MyShows</code> can only be listed.
 </p>
 
-<h4>My Cart (<code>getFeedForCart()</code>)</h4>
+<h4 id="personal-cart">My Cart (<code>getFeedForCart()</code>)</h4>
 
 <p>
 	Retrieve the list of items that have been saved to your cart.
@@ -25,7 +52,7 @@
 
 <blockquote>see <code><a href="src/test/java/GetFeedForCart.java">GetFeedForCart.java</a></code></blockquote>
 
-<h4>My Movies (<code>getFeedForMyMovies()</code>)</h4>
+<h4 id="personal-movies">My Movies (<code>getFeedForMyMovies()</code>)</h4>
 
 <p>
 	Retrieve the list of items that have been saved to the 'My Movies' section.
@@ -35,7 +62,7 @@
 
 <blockquote>see <code><a href="src/test/java/GetFeedForMyMovies.java">GetFeedForMyMovies.java</a></code></blockquote>
 
-<h4>My Shows (<code>getFeedForMyShows()</code>)</h4>
+<h4 id="personal-shows">My Shows (<code>getFeedForMyShows()</code>)</h4>
 
 <p>
 	Retrieve the list of items that have been saved to the 'My Shows' section.
@@ -47,7 +74,7 @@
 
 <h3>Site-Wide Feeds</h3>
 
-<h4>Site (<code>getFeedForSite()</code>)</h4>
+<h4 id="site-site">Site (<code>getFeedForSite()</code>)</h4>
 
 <p>
 	Retrieve the list of most recently indexed releases for the site, this includes 
@@ -58,11 +85,86 @@
 
 <blockquote>
 	see <code><a href="src/test/java/GetFeedForSite.java">GetFeedForSite.java</a></code> 
-	<strong>NOTE:</strong> not all feeds are available on all indexer.
+	<strong>NOTE:</strong> not all feeds are available on all indexers.
 </blockquote>
 
+<h4 id="site-category">Category (<code>getCategoryFeed(int category)</code>)</h4>
 
-<h4>Audio (<code>getFeedForAudio()</code>)</h4>
+<p>
+	Retrieve the list of most recently indexed releases for a specific category, 
+	see the pre-defined categories.  There is a list of pre-defined categories, 
+	which <strong>MOST</strong>, (<em>if not all</em>) indexers adhere to, however 
+	this cannot be guaranteed to be correct for every indexer.  Use the 
+	<code>getCapabilities()</code> call to determine the categories and sub-categories 
+	for a specific indexer.
+</p>
+
+<p>
+	Also see the <code>synapticloop.newznab.api.Category</code> constants file for 
+	the pre-defined values.
+</p>
+
+<table>
+<thead>
+<tr><th>Categories</th><th>Category Name</th></tr>
+</thead>
+<tbody>
+<tr><td>0000</td><td>Reserved</td></tr>
+<tr><td>1000</td><td>Console</td></tr>
+<tr><td>1010</td><td>Console/NDS</td></tr>
+<tr><td>1020</td><td>Console/PSP</td></tr>
+<tr><td>1030</td><td>Console/Wii</td></tr>
+<tr><td>1040</td><td>Console/XBox</td></tr>
+<tr><td>1050</td><td>Console/XBox 360</td></tr>
+<tr><td>1060</td><td>Console/Wiiware</td></tr>
+<tr><td>1070</td><td>Console/XBox 360 DLC</td></tr>
+<tr><td>2000</td><td>Movies</td></tr>
+<tr><td>2010</td><td>Movies/Foreign</td></tr>
+<tr><td>2020</td><td>Movies/Other</td></tr>
+<tr><td>2030</td><td>Movies/SD</td></tr>
+<tr><td>2040</td><td>Movies/HD</td></tr>
+<tr><td>2050</td><td>Movies/BluRay</td></tr>
+<tr><td>2060</td><td>Movies/3D</td></tr>
+<tr><td>3000</td><td>Audio</td></tr>
+<tr><td>3010</td><td>Audio/MP3</td></tr>
+<tr><td>3020</td><td>Audio/Video</td></tr>
+<tr><td>3030</td><td>Audio/Audiobook</td></tr>
+<tr><td>3040</td><td>Audio/Lossless</td></tr>
+<tr><td>4000</td><td>PC</td></tr>
+<tr><td>4010</td><td>PC/0day</td></tr>
+<tr><td>4020</td><td>PC/ISO</td></tr>
+<tr><td>4030</td><td>PC/Mac</td></tr>
+<tr><td>4040</td><td>PC/Mobile-Other</td></tr>
+<tr><td>4050</td><td>PC/Games</td></tr>
+<tr><td>4060</td><td>PC/Mobile-iOS</td></tr>
+<tr><td>4070</td><td>PC/Mobile-Android</td></tr>
+<tr><td>5000</td><td>TV</td></tr>
+<tr><td>5020</td><td>TV/Foreign</td></tr>
+<tr><td>5030</td><td>TV/SD</td></tr>
+<tr><td>5040</td><td>TV/HD</td></tr>
+<tr><td>5050</td><td>TV/Other</td></tr>
+<tr><td>5060</td><td>TV/Sport</td></tr>
+<tr><td>6000</td><td>XXX</td></tr>
+<tr><td>6010</td><td>XXX/DVD</td></tr>
+<tr><td>6020</td><td>XXX/WMV</td></tr>
+<tr><td>6030</td><td>XXX/XviD</td></tr>
+<tr><td>6040</td><td>XXX/x264</td></tr>
+<tr><td>7000</td><td>Other</td></tr>
+<tr><td>7010</td><td>Misc</td></tr>
+<tr><td>7020</td><td>EBook</td></tr>
+<tr><td>7030</td><td>Comics</td></tr>
+<tr><td>100000-</td><td>Custom</td></tr>
+</tbody>
+</table>
+
+<pre><code>{static src/test/java/GetCategoryFeed.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/GetCategoryFeed.java">GetCategoryFeed.java</a></code> 
+	<strong>NOTE:</strong> not all feeds are available on all indexers.
+</blockquote>
+
+<h4 id="site-audio">Audio (<code>getFeedForAudio()</code>)</h4>
 
 <p>
 	Retrieve the list of most recently indexed releases for the audio category.
@@ -72,10 +174,10 @@
 
 <blockquote>
 	see <code><a href="src/test/java/GetFeedForAudio.java">GetFeedForAudio.java</a></code> 
-	<strong>NOTE:</strong> not all feeds are available on all indexer.
+	<strong>NOTE:</strong> not all feeds are available on all indexers.
 </blockquote>
 
-<h4>Console (<code>getFeedForConsoles()</code>)</h4>
+<h4 id="site-console">Console (<code>getFeedForConsoles()</code>)</h4>
 
 <p>
 	Retrieve the list of most recently indexed releases for the consoles category.
@@ -85,10 +187,10 @@
 
 <blockquote>
 	see <code><a href="src/test/java/GetFeedForConsoles.java">GetFeedForConsoles.java</a></code> 
-	<strong>NOTE:</strong> not all feeds are available on all indexer.
+	<strong>NOTE:</strong> not all feeds are available on all indexers.
 </blockquote>
 
-<h4>Movies (<code>getFeedForMovies()</code>)</h4>
+<h4 id="site-movies">Movies (<code>getFeedForMovies()</code>)</h4>
 
 <p>
 	Retrieve the list of most recently indexed releases for the movies category.
@@ -98,10 +200,10 @@
 
 <blockquote>
 	see <code><a href="src/test/java/GetFeedForMovies.java">GetFeedForMovies.java</a></code> 
-	<strong>NOTE:</strong> not all feeds are available on all indexer.
+	<strong>NOTE:</strong> not all feeds are available on all indexers.
 </blockquote>
 
-<h4>Other (<code>getFeedForOther()</code>)</h4>
+<h4 id="site-other">Other (<code>getFeedForOther()</code>)</h4>
 
 <p>
 	Retrieve the list of most recently indexed releases for the other category - i.e. 
@@ -112,10 +214,10 @@
 
 <blockquote>
 	see <code><a href="src/test/java/GetFeedForOther.java">GetFeedForOther.java</a></code> 
-	<strong>NOTE:</strong> not all feeds are available on all indexer.
+	<strong>NOTE:</strong> not all feeds are available on all indexers.
 </blockquote>
 
-<h4>PC (<code>getFeedForPc()</code>)</h4>
+<h4 id="site-pc">PC (<code>getFeedForPc()</code>)</h4>
 
 <p>
 	Retrieve the list of most recently indexed releases for the PC category.
@@ -125,10 +227,10 @@
 
 <blockquote>
 	see <code><a href="src/test/java/GetFeedForPc.java">GetFeedForPc.java</a></code> 
-	<strong>NOTE:</strong> not all feeds are available on all indexer.
+	<strong>NOTE:</strong> not all feeds are available on all indexers.
 </blockquote>
 
-<h4>TV (<code>getFeedForTv()</code>)</h4>
+<h4 id="site-tv">TV (<code>getFeedForTv()</code>)</h4>
 
 <p>
 	Retrieve the list of most recently indexed releases for the TV category.
@@ -138,10 +240,10 @@
 
 <blockquote>
 	see <code><a href="src/test/java/GetFeedForTv.java">GetFeedForTv.java</a></code> 
-	<strong>NOTE:</strong> not all feeds are available on all indexer.
+	<strong>NOTE:</strong> not all feeds are available on all indexers.
 </blockquote>
 
-<h4>XXX (adult-content) (<code>getFeedForXXX()</code>)</h4>
+<h4 id="site-xxx">XXX (adult-content) (<code>getFeedForXXX()</code>)</h4>
 
 <p>
 	Retrieve the list of most recently indexed releases for the XXX (adult) category.
@@ -151,6 +253,6 @@
 
 <blockquote>
 	see <code><a href="src/test/java/GetFeedForXXX.java">GetFeedForXXX.java</a></code> 
-	<strong>NOTE:</strong> not all feeds are available on all indexer.
+	<strong>NOTE:</strong> not all feeds are available on all indexers.
 </blockquote>
 

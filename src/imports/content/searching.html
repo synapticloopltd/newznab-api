@@ -1,0 +1,79 @@
+<h3>Searching</h3>
+
+<p>
+	Search for indexed releases through a variety of methods.
+</p>
+
+<h4>Basic Search</h4>
+
+<p>
+	The basic search method <code>newzNabApi.search(String query)</code> will 
+	return a list of all of the matching releases that contains the query in a 
+	variety of fields and attributes (i.e. metadata).
+</p>
+
+<p>
+	By default all searches return 100 results, to iterate through them, the API 
+	allows an <code>offset</code> parameter to retrieve further results.
+</p>
+
+<pre><code>{static src/test/java/SearchIteration.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/SearchIteration.java">SearchIteration.java</a></code> 
+</blockquote>
+
+<p>
+	To search with a category (or multiple categories) invoke the 
+	<code>newzNabApi.search(String query, int offset, int[] categories)</code> 
+	method.
+</p>
+
+<pre><code>{static src/test/java/Search.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/Search.java">Search.java</a></code> 
+</blockquote>
+
+<h4>Specific Search</h4>
+
+<p>
+	Some indexers also support more specific (or targeted searches) with additional 
+	options that are only pertinent to the category.
+</p>
+
+<p>
+	this relies on the functionality of the indexer to be present, and that the 
+	lookups on the releases can be found.
+</p>
+
+<h5>Book</h5>
+
+<p>
+	The book search allows search by title and author
+</p>
+
+<h5>Music</h5>
+
+<p>
+	The music search allows search by year, label, album, artist and track
+</p>
+
+<h5>TV</h5>
+
+<p>
+	The TV search allows search by episode and season numbers along with identifiers 
+	from popular TV index sites (TV Rage, TV Maze, TVDB)
+</p>
+
+<h5>Movie</h5>
+
+<p>
+	The movie search allows search by genre and the IMBD id
+</p>
+
+<pre><code>{static src/test/java/Search.java}</code></pre>
+
+<blockquote>
+	see <code><a href="src/test/java/SearchSpecific.java">SearchSpecific.java</a></code> 
+</blockquote>

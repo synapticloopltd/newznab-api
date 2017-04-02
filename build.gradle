@@ -16,8 +16,8 @@ repositories {
 }
 
 dependencies {
-	runtime 'synapticloop:newznab-api:1.0.0'
-	compile 'synapticloop:newznab-api:1.0.0'
+	runtime 'synapticloop:newznab-api:1.2.0'
+	compile 'synapticloop:newznab-api:1.2.0'
 }
 
 templarGen {
