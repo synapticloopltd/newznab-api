@@ -44,7 +44,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import synapticloop.newznab.api.exception.NewzNabApiException;
-import synapticloop.newznab.api.response.CapabilitiesResponse;
 import synapticloop.newznab.api.response.RegistrationResponse;
 
 @PowerMockIgnore({ "javax.net.ssl.*", "javax.management.*" })
