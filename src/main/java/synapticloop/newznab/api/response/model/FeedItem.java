@@ -1,34 +1,41 @@
 package synapticloop.newznab.api.response.model;
 
-import java.text.DateFormat;
+/*
+ * Copyright (c) 2016-2017 Synapticloop.
+ * 
+ * All rights reserved.
+ * 
+ * This code may contain contributions from other parties which, where 
+ * applicable, will be listed in the default build file for the project 
+ * ~and/or~ in a file named CONTRIBUTORS.txt in the root of the project.
+ * 
+ * This source code and any derived binaries are covered by the terms and 
+ * conditions of the Licence agreement ("the Licence").  You may not use this 
+ * source code or any derived binaries except in compliance with the Licence.  
+ * A copy of the Licence is available in the file named LICENSE.txt shipped with 
+ * this source code or binaries.
+ */
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 import synapticloop.newznab.api.response.BaseModel;
-import synapticloop.newznab.api.response.SearchResponse;
 import synapticloop.newznab.api.response.model.attributes.EnclosureAttributes;
 import synapticloop.newznab.api.response.model.attributes.ItemAttributes;
 
 public class FeedItem extends BaseModel {
-	private static final String DEFAULT_DATE_FORMAT = "E, dd MMM yyyy HH:mm:ss Z";
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(FeedItem.class);
 
+	private static final String DEFAULT_DATE_FORMAT = "E, dd MMM yyyy HH:mm:ss Z";
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-	private static final String GUID = "guid";
 
 
 	@JsonProperty("title")         private String title;
