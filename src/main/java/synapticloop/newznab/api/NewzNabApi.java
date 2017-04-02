@@ -83,10 +83,24 @@ public class NewzNabApi {
 		this(HttpClients.createDefault(), apiUrl, apiKey);
 	}
 
+	/**
+	 * Instantiate the NewzNab API with an endpoint URL and a Http client
+	 * 
+	 * @param client the client to use
+	 * @param apiUrl the api URL to hit
+	 */
 	public NewzNabApi(CloseableHttpClient client, String apiUrl) {
 		this(client, apiUrl, null);
 	}
 
+	/**
+	 * Instantiate the NewzNab API with an endpoint URL and a Http client and an
+	 * api key
+	 * 
+	 * @param client the client to use
+	 * @param apiUrl the api URL to hit
+	 * @param apiKey the api key to use
+	 */
 	public NewzNabApi(CloseableHttpClient client, String apiUrl, String apiKey) {
 		this.client = client;
 		this.apiUrl = apiUrl;
@@ -210,14 +224,61 @@ public class NewzNabApi {
 		return(parseResponse(httpResponse, SearchResponse.class));
 	}
 
+	/**
+	 * Search tv shows
+	 * 
+	 * @param query the term to query 
+	 * @param season the season number
+	 * @param episode the episode number
+	 * 
+	 * @return The search results
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
 	public SearchResponse searchTv(String query, int season, int episode) throws NewzNabApiException, IOException {
 		return(searchTv(query, season, episode, 0, -1, -1, -1, -1, -1, false, false));
 	}
 
+	/**
+	 * Search tv shows
+	 * 
+	 * @param query the term to query 
+	 * @param season the season number
+	 * @param episode the episode number
+	 * @param offset for paginated results, the offset number
+	 * @param limit the maximum number of results to return
+	 * 
+	 * @return The search results
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
 	public SearchResponse searchTv(String query, int season, int episode, long offset, int limit) throws NewzNabApiException, IOException {
 		return(searchTv(query, season, episode, offset, limit, -1, -1, -1, -1, false, false));
 	}
 
+	/**
+	 * Search TV shows, if any of the parameters are null (or -1 for integers) 
+	 * then they will not be used within the query 
+	 * 
+	 * @param query the term to query 
+	 * @param season the season number
+	 * @param episode the episode number
+	 * @param offset for paginated results, the offset number
+	 * @param limit the maximum number of results to return
+	 * @param maxAgeDays the maximum number of days to go back in the search
+	 * @param rageId the rage ID
+	 * @param tvdbId the TVDB id
+	 * @param tvMazeId the TV Maze ID
+	 * @param deleteFromCart whether to delete this result from the cart (if it exists in the cart)
+	 * @param returnExtendedAttributes whether to return extended attributes
+	 * 
+	 * @return The search results
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
 	public SearchResponse searchTv(String query, int season, int episode, long offset, 
 			int limit, 
 			int maxAgeDays, 
