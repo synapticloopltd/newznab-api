@@ -1,0 +1,11 @@
+head-title=newznab API by synapticloop
+
+header-h1=newznab API
+header-h2=Welcome to newznab api
+header-tagline=A Java API for connecting to NewzNab powered Usenet Indexers
+
+sidebar-h3=newznab-api
+sidebar-tagline=A Java API for connecting to NewzNab powered Usenet Indexers
+
+github-org=synapticloopltd
+github-repo=newznab-api
