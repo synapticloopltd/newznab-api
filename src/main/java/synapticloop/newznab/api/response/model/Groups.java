@@ -16,6 +16,9 @@ package synapticloop.newznab.api.response.model;
  * this source code or binaries.
  */
 
+
+import java.util.ArrayList;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -28,7 +31,7 @@ import synapticloop.newznab.api.response.BaseModel;
 public class Groups extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Groups.class);
 
-	@JsonProperty("group")  private List<Group> groups;
+	@JsonProperty("group")  private List<Group> groups = new ArrayList<Group>();
 
 	public List<Group> getGroups() { return groups; }
 

@@ -16,6 +16,8 @@ package synapticloop.newznab.api.response.model;
  * this source code or binaries.
  */
 
+import java.util.ArrayList;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -28,7 +30,7 @@ import synapticloop.newznab.api.response.BaseModel;
 public class Genres extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Genres.class);
 
-	@JsonProperty("genre")  private List<Genre> genres;
+	@JsonProperty("genre")  private List<Genre> genres = new ArrayList<Genre>();
 
 	public List<Genre> getGenres() { return genres; }
 

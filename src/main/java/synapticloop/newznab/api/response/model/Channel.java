@@ -16,6 +16,8 @@ package synapticloop.newznab.api.response.model;
  * this source code or binaries.
  */
 
+import java.util.ArrayList;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -36,7 +38,7 @@ public class Channel extends BaseModel {
 	@JsonProperty("link")         private String link;
 	@JsonProperty("language")     private String language;
 	@JsonProperty("webMaster")    private String webMaster;
-	@JsonProperty("item")         private List<Item> items;
+	@JsonProperty("item")         private List<Item> items = new ArrayList<Item>();
 	@JsonProperty("image")        private Image image;
 	@JsonProperty("response")     private Response response;
 

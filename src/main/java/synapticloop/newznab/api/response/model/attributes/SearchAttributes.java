@@ -1,5 +1,7 @@
 package synapticloop.newznab.api.response.model.attributes;
 
+import java.util.ArrayList;
+
 /*
  * Copyright (c) 2016-2017 Synapticloop.
  * 
@@ -32,7 +34,7 @@ public class SearchAttributes extends BaseModel {
 	private static final String YES = "yes";
 
 	@JsonProperty("available")        private boolean isAvailable;
-	@JsonProperty("supportedParams")  private List<String> supportedParams;
+	@JsonProperty("supportedParams")  private List<String> supportedParams = new ArrayList<String>();
 
 
 	@JsonSetter

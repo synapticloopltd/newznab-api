@@ -53,11 +53,22 @@ public class CommentTest {
 		assertTrue(commentResponse.getId() > 0);
 
 		CommentsResponse commentsResponse = newzNabApi.getComments(guid);
+		assertNotNull(commentsResponse.getDescription());
+		assertNotNull(commentsResponse.getImage());
+		assertNotNull(commentsResponse.getLanguage());
+		assertNotNull(commentsResponse.getLink());
+		assertNotNull(commentsResponse.getTitle());
+		assertNotNull(commentsResponse.getVersion());
+		assertNotNull(commentsResponse.getWebMaster());
 		List<CommentItem> items = commentsResponse.getItems();
 
 		boolean foundComment = false;
 		for (CommentItem commentItem : items) {
 			if(comment.equals(commentItem.getComment())) {
+				assertNotNull(commentItem.getCommentLink());
+				assertNotNull(commentItem.getGuidLink());
+				assertNotNull(commentItem.getPublishDate());
+				assertNotNull(commentItem.getTitle());
 				foundComment = true;
 				break;
 			}

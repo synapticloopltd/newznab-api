@@ -122,7 +122,9 @@ public class NewzNabApi {
 		parameters.put(KEY_REQUEST_PARAMETER_OUTPUT, VALUE_REQUEST_PARAMETER_JSON);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, CapabilitiesResponse.class));
+		CapabilitiesResponse parseResponse = parseResponse(httpResponse, CapabilitiesResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	/**
@@ -144,7 +146,9 @@ public class NewzNabApi {
 		parameters.put(KEY_REQUEST_PARAMETER_EMAIL, emailAddress);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, RegistrationResponse.class, true));
+		RegistrationResponse parseResponse = parseResponse(httpResponse, RegistrationResponse.class, true);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	/**
@@ -221,7 +225,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, SearchResponse.class));
+		SearchResponse parseResponse = parseResponse(httpResponse, SearchResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	/**
@@ -311,7 +317,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, SearchResponse.class));
+		SearchResponse parseResponse = parseResponse(httpResponse, SearchResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	public SearchResponse searchMovie(String query) throws NewzNabApiException, IOException {
@@ -356,7 +364,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, SearchResponse.class));
+		SearchResponse parseResponse = parseResponse(httpResponse, SearchResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	public SearchResponse searchMusic(String query) throws NewzNabApiException, IOException {
@@ -406,7 +416,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, SearchResponse.class));
+		SearchResponse parseResponse = parseResponse(httpResponse, SearchResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	public SearchResponse searchBook(String query, long offset, int limit) throws NewzNabApiException, IOException {
@@ -442,7 +454,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, SearchResponse.class));
+		SearchResponse parseResponse = parseResponse(httpResponse, SearchResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	/**
@@ -456,7 +470,7 @@ public class NewzNabApi {
 	 * @throws IOException if there was an error communicating with the API
 	 * @throws NewzNabApiException if there was an error with the API
 	 */
-	public DetailsResponse details(String guid) throws IOException, NewzNabApiException {
+	public DetailsResponse getDetails(String guid) throws IOException, NewzNabApiException {
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put(KEY_REQUEST_PARAMETER_FUNCTION, VALUE_REQUEST_PARAMETER_DETAILS);
 		parameters.put(KEY_REQUEST_PARAMETER_OUTPUT, VALUE_REQUEST_PARAMETER_JSON);
@@ -466,7 +480,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, DetailsResponse.class));
+		DetailsResponse parseResponse = parseResponse(httpResponse, DetailsResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	/**
@@ -537,7 +553,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, CartResponse.class));
+		CartResponse parseResponse = parseResponse(httpResponse, CartResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	public CartResponse cartDelete(String guid) throws IOException, NewzNabApiException {
@@ -550,7 +568,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, CartResponse.class));
+		CartResponse parseResponse = parseResponse(httpResponse, CartResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	/**
@@ -708,10 +728,13 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_R, apiKey);
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_I, VALUE_REQUEST_PARAMETER_TRUE);
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_RSS_DL, VALUE_REQUEST_PARAMETER_TRUE);
-		addIntegerParameter(parameters, KEY_REQUEST_PARAMETER_RSS_T, category);
+		// we need to put this in manually as addIntegerParameter will not allow negative numbers      
+		parameters.put(KEY_REQUEST_PARAMETER_RSS_T, Integer.toString(category));
 
 		CloseableHttpResponse httpResponse = executeRssGet(parameters);
-		return(parseResponse(httpResponse, FeedResponse.class, true));
+		FeedResponse parseResponse = parseResponse(httpResponse, FeedResponse.class, true);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	public UserResponse getUser(String username) throws IOException, NewzNabApiException {
@@ -724,7 +747,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, UserResponse.class));
+		UserResponse parseResponse = parseResponse(httpResponse, UserResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	public CommentsResponse getComments(String guid) throws IOException, NewzNabApiException {
@@ -737,7 +762,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, CommentsResponse.class));
+		CommentsResponse parseResponse = parseResponse(httpResponse, CommentsResponse.class);
+		httpResponse.close();
+		return parseResponse;
 
 	}
 
@@ -752,7 +779,9 @@ public class NewzNabApi {
 		addStringParameter(parameters, KEY_REQUEST_PARAMETER_APIKEY, apiKey);
 
 		CloseableHttpResponse httpResponse = executeApiGet(parameters);
-		return(parseResponse(httpResponse, CommentResponse.class));
+		CommentResponse parseResponse = parseResponse(httpResponse, CommentResponse.class);
+		httpResponse.close();
+		return parseResponse;
 	}
 
 	private void addIntegerArrayParameter(Map<String, String> parameters, String key, int[] values) {

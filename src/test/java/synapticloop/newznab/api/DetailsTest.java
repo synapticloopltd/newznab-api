@@ -29,7 +29,7 @@ public class DetailsTest {
 
 	@Test(expected=NewzNabApiException.class)
 	public void testNullNfo() throws IOException, NewzNabApiException {
-		newzNabApi.details(null);
+		newzNabApi.getDetails(null);
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class DetailsTest {
 		// now that we have got a 
 		Item item = searchResponse.getItems().get(0);
 		String guid = item.getGuid();
-		DetailsResponse details = newzNabApi.details(guid);
+		DetailsResponse details = newzNabApi.getDetails(guid);
 		int size = details.getItems().size();
 		assertEquals(size, 1);
 	}

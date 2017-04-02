@@ -18,6 +18,7 @@ package synapticloop.newznab.api.response.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class Item extends BaseModel {
 	@JsonProperty("category")     private String categoryName;
 	@JsonProperty("description")  private String description;
 	@JsonProperty("enclosure")    private Enclosure enclosure;
-	@JsonProperty("attr")         private List<ItemAttribute> itemAttributes;
+	@JsonProperty("attr")         private List<ItemAttribute> itemAttributes = new ArrayList<ItemAttribute>();
 
 	public String getTitle() { return title; }
 	public String getDetailsLink() { return detailsLink; }
