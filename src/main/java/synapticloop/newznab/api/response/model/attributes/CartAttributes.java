@@ -32,7 +32,8 @@ public class CartAttributes extends BaseModel {
 	/**
 	 * Get the ID of the associated cart response.  This will either be a long 
 	 * in the case of an addition, or the GUID of the deleted item.
-	 * @return
+	 * 
+	 * @return the id of the response
 	 */
 	public String getId() { return id; }
 

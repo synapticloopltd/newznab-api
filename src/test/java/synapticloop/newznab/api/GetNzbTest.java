@@ -45,7 +45,7 @@ public class GetNzbTest {
 
 	@Test(expected=NewzNabApiException.class)
 	public void testNullNfo() throws IOException, NewzNabApiException {
-		newzNabApi.nfo(null);
+		newzNabApi.getNfo(null);
 	}
 
 	@Test
@@ -60,6 +60,6 @@ public class GetNzbTest {
 		assertTrue(searchResponse.getItems().size() == 1);
 		Item item = searchResponse.getItems().get(0);
 		String guid = item.getGuid();
-		assertNotNull(newzNabApi.nfo(guid));
+		assertNotNull(newzNabApi.getNfo(guid));
 	}
 }

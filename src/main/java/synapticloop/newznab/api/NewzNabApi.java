@@ -405,7 +405,17 @@ public class NewzNabApi {
 		return(parseResponse(httpResponse, DetailsResponse.class));
 	}
 
-	public String nfo(String guid) throws IOException, NewzNabApiException {
+	/**
+	 * Get the .nfo from the release identified by the GUID (if it exists)
+	 * 
+	 * @param guid the GUID for the release
+	 * 
+	 * @return the NFO contents as text
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public String getNfo(String guid) throws IOException, NewzNabApiException {
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put(KEY_REQUEST_PARAMETER_FUNCTION, VALUE_REQUEST_PARAMETER_GETNFO);
 		parameters.put(KEY_REQUEST_PARAMETER_RAW, VALUE_REQUEST_PARAMETER_TRUE);
@@ -593,7 +603,7 @@ public class NewzNabApi {
 	}
 
 	/**
-	 * Get the latest indexed XXX releases (if unavailable, this will return an 
+	 * Get the latest indexed triple-x releases (if unavailable, this will return an 
 	 * error or an empty list of items in the FeedResponse).
 	 * 
 	 * @return The list of items in the feed

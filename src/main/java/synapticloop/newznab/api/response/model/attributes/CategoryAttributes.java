@@ -34,7 +34,7 @@ public class CategoryAttributes extends BaseModel {
 	 * has the following pre-defined values: (for actual values that are supported
 	 * by the NewzNab provider see the caps call).
 	 * 
-	 * <table>
+	 * <table summary="List of the default newznab categories">
 	 * <thead>
 	 * <tr>
 	 * <th>Category</th><th>Range</th><th>Category</th><th>Name</th><th>Comments</th>
