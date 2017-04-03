@@ -280,7 +280,7 @@ public class NewzNabApi {
 	}
 
 	/**
-	 * Search tv shows
+	 * Search TV shows
 	 * 
 	 * @param query the term to query 
 	 * @param season the season number
