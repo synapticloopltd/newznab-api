@@ -29,6 +29,11 @@ public class Enclosure extends BaseModel {
 
 	@JsonProperty("@attributes")  private EnclosureAttributes enclosureAttributes;
 
+	/**
+	 * Get the attributes for the enclosure
+	 * 
+	 * @return the attributes for the enclosure
+	 */
 	public EnclosureAttributes getEnclosureAttributes() { return(enclosureAttributes); }
 
 	@Override

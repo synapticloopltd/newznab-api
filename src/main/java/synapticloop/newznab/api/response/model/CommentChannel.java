@@ -60,14 +60,54 @@ public class CommentChannel extends BaseModel {
 	// we never get the 'category' object back
 	@JsonProperty("category")     private Object category;
 
+	/**
+	 * Get the title of the feed
+	 * 
+	 * @return the title of the feed
+	 */
 	public String getTitle() { return title; }
-	public String getDescription() { return description; }
-	public String getLink() { return link; }
-	public String getLanguage() { return language; }
-	public String getWebMaster() { return webMaster; }
-	public List<CommentItem> getItems() { return commentItems; }
-	public Image getImage() { return image; }
 
+	/**
+	 * Get the description of the feed
+	 * 
+	 * @return the description of the feed
+	 */
+	public String getDescription() { return description; }
+
+	/**
+	 * Get the link to the site
+	 * 
+	 * @return the link to the site
+	 */
+	public String getLink() { return link; }
+
+	/**
+	 * Get the language that this feed is in
+	 * 
+	 * @return the language that this feed is in
+	 */
+	public String getLanguage() { return language; }
+
+	/**
+	 * Get the web master 
+	 * 
+	 * @return the web master
+	 */
+	public String getWebMaster() { return webMaster; }
+
+	/**
+	 * Get the list of items
+	 * 
+	 * @return the list of items
+	 */
+	public List<CommentItem> getItems() { return commentItems; }
+
+	/**
+	 * Get the branding image
+	 * 
+	 * @return the branding image
+	 */
+	public Image getImage() { return image; }
 	@Override
 	public Logger getLogger() { return(LOGGER); }
 }

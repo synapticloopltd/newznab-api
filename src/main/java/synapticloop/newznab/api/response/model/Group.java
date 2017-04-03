@@ -49,6 +49,11 @@ public class Group extends BaseModel {
 
 	@JsonProperty("@attributes")  private List<GroupAttributes> groupAttributes = new ArrayList<GroupAttributes>();
 
+	/**
+	 * Get the attributes for the group
+	 * 
+	 * @return the attributes for the group
+	 */
 	public List<GroupAttributes> getGroupAttributes() { return groupAttributes; }
 
 	@Override

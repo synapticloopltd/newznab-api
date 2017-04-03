@@ -33,8 +33,12 @@ public class Groups extends BaseModel {
 
 	@JsonProperty("group")  private List<Group> groups = new ArrayList<Group>();
 
+	/**
+	 * Get the list of groups
+	 * 
+	 * @return the list of groups
+	 */
 	public List<Group> getGroups() { return groups; }
-
 
 	@Override
 	public Logger getLogger() { return(LOGGER); }

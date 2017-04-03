@@ -66,12 +66,53 @@ public class FeedChannel extends BaseModel {
 	// we never get the 'category' object back
 	@JsonProperty("category")     private Object category;
 
+	/**
+	 * Get the title of the feed
+	 * 
+	 * @return the title of the feed
+	 */
 	public String getTitle() { return title; }
+
+	/**
+	 * Get the description of the feed
+	 * 
+	 * @return the description of the feed
+	 */
 	public String getDescription() { return description; }
+
+	/**
+	 * Get the link to the site
+	 * 
+	 * @return the link to the site
+	 */
 	public String getSiteLink() { return siteLink; }
+
+	/**
+	 * Get the language that this feed is in
+	 * 
+	 * @return the language that this feed is in
+	 */
 	public String getLanguage() { return language; }
+
+	/**
+	 * Get the web master 
+	 * 
+	 * @return the web master
+	 */
 	public String getWebMaster() { return webMaster; }
+
+	/**
+	 * Get the list of items in this feed
+	 * 
+	 * @return the list of items in this feed
+	 */
 	public List<FeedItem> getFeedItems() { return items; }
+
+	/**
+	 * Get the branding image
+	 * 
+	 * @return the branding image
+	 */
 	public Image getImage() { return image; }
 
 	@Override

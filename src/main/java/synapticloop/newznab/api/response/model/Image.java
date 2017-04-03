@@ -31,12 +31,34 @@ public class Image extends BaseModel {
 	@JsonProperty("link")  private String link;
 	@JsonProperty("description")  private String description;
 
+	/**
+	 * Get the URL for the image
+	 * 
+	 * @return the URL for the image
+	 */
 	public String getUrl() { return url; }
+
+	/**
+	 * Get the title of the image
+	 * 
+	 * @return the title of the image
+	 */
 	public String getTitle() { return title; }
+
+	/**
+	 * Get the link for the image
+	 * 
+	 * @return the link for the image
+	 */
 	public String getLink() { return link; }
+
+	/**
+	 * Get the description of the image
+	 * 
+	 * @return the description of the image
+	 */
 	public String getDescription() { return description; }
 
 	@Override
 	public Logger getLogger() { return(LOGGER); }
-
 }

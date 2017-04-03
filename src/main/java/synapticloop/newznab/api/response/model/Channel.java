@@ -29,7 +29,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import synapticloop.newznab.api.response.BaseModel;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
 public class Channel extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Channel.class);
 

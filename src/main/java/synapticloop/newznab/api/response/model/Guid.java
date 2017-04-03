@@ -29,9 +29,25 @@ public class Guid extends BaseModel {
 	@JsonProperty("content")  private String contentDetailsLink;
 	@JsonProperty("isPermaLink")  private boolean isPermalink;
 
+	/**
+	 * Get the link for the contents of the GUID
+	 * 
+	 * @return the link for the contents of the GUID
+	 */
 	public String getContentDetailsLink() { return contentDetailsLink; }
+
+	/**
+	 * Return whether this is a permalink
+	 * 
+	 * @return whether this is a permalink
+	 */
 	public boolean isPermalink() { return isPermalink; }
-	
+
+	/**
+	 * Get the GUID
+	 * 
+	 * @return the GUID
+	 */
 	public String getGuid() {
 		return(contentDetailsLink.substring(contentDetailsLink.lastIndexOf("/") + 1));
 	}

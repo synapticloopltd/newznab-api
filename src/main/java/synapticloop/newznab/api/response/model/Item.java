@@ -65,22 +65,90 @@ public class Item extends BaseModel {
 	 * @return the title for the item
 	 */
 	public String getTitle() { return title; }
+
+	/**
+	 * Get the link to the details for the item
+	 * 
+	 * @return the link to the details for the item
+	 */
 	public String getDetailsLink() { return detailsLink; }
+
+	/**
+	 * Get the link to download the NZB for this item
+	 * 
+	 * @return the link to download the NZB for this item
+	 */
 	public String getNzbLink() { return nzbLink; }
+
+	/**
+	 * Get the link to the comments for this item
+	 * 
+	 * @return the link to the comments for this item
+	 */
 	public String getCommentsLink() { return commentsLink; }
+
+	/**
+	 * Get the date that this item was published
+	 * 
+	 * @return the date that this item was published
+	 */
 	public Date getPublishDate() { return publishDate; }
+
+	/**
+	 * Get the name of the category that this item belongs in
+	 * 
+	 * @return the name of the category that this item belongs in
+	 */
 	public String getCategoryName() { return categoryName; }
+
+	/**
+	 * Get the description for this item - the returned String __MAY__ be already 
+	 * be formatted in HTML
+	 * 
+	 * @return the description for this item
+	 */
 	public String getDescription() { return description; }
+
+	/**
+	 * Get the length of the item (in bytes)
+	 * 
+	 * @return the length of the item (in bytes)
+	 */
 	public Long getLength() { return(enclosure.getEnclosureAttributes().getLength()); }
+
+	/**
+	 * Get the mime type of the item
+	 * 
+	 * @return the mime type of the item
+	 */
 	public String getType() { return(enclosure.getEnclosureAttributes().getType()); }
 
-
+	/**
+	 * Get the attributes for the item
+	 * 
+	 * @return the attributes for the item
+	 */
 	public List<ItemAttribute> getItemAttributes() { return itemAttributes; }
 
+	/**
+	 * Get the name of the poster of this item
+	 * 
+	 * @return the name of the poster of this item
+	 */
 	public String getPoster() { return(getItemAttribute(KEY_POSTER)); }
 
+	/**
+	 * Get the usenet group that this item was posted to
+	 * 
+	 * @return the usenet group that this item was posted to
+	 */
 	public String getGroup() { return(getItemAttribute(KEY_GROUP)); }
 
+	/**
+	 * Get the number of grabs that this item has had
+	 * 
+	 * @return the number of grabs that this item has had
+	 */
 	public int getNumGrabs() { 
 		String itemAttribute = getItemAttribute(KEY_GRABS);
 		if(null != itemAttribute) {
@@ -93,6 +161,11 @@ public class Item extends BaseModel {
 		return 0; 
 	}
 
+	/**
+	 * Get the number of files that this release contains
+	 * 
+	 * @return the number of files that this release contains
+	 */
 	public int getNumFiles() { 
 		String itemAttribute = getItemAttribute(KEY_FILES);
 		if(null != itemAttribute) {
@@ -105,6 +178,11 @@ public class Item extends BaseModel {
 		return 0; 
 	}
 
+	/**
+	 * Get the number of comments that have been made on this item
+	 * 
+	 * @return the number of comments that have been made on this item
+	 */
 	public int getNumComments() { 
 		String itemAttribute = getItemAttribute(KEY_COMMENTS);
 		if(null != itemAttribute) {
@@ -117,8 +195,18 @@ public class Item extends BaseModel {
 		return 0; 
 	}
 
+	/**
+	 * Get the GUID for this item
+	 * 
+	 * @return the GUID for this item
+	 */
 	public String getGuid() { return(getItemAttribute(GUID)); }
 
+	/**
+	 * Get the date that this item was posted on usenet
+	 * 
+	 * @return the date that this item was posted on usenet
+	 */
 	public Date getUsenetDate() {
 		String itemAttribute = getItemAttribute(KEY_USENETDATE);
 		if(null != itemAttribute) {
@@ -131,10 +219,23 @@ public class Item extends BaseModel {
 		return null;
 	}
 
+	/**
+	 * Get whether this release has a password - note that not all indexers 
+	 * provide this functionality
+	 * 
+	 * @return whether this release is password protected
+	 */
 	public boolean getHasPassword() {
 		return("0".equals(getItemAttribute(KEY_PASSWORD)));
 	}
 
+	/**
+	 * Get the item's attribute if it exists (else return null)
+	 * 
+	 * @param name the key of the attribute to look up
+	 * 
+	 * @return the item's attribute (or null if it doesn't exist)
+	 */
 	public String getItemAttribute(String name) {
 		if(null == name) {
 			return(null);

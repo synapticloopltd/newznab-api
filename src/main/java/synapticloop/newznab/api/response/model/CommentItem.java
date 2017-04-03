@@ -41,10 +41,39 @@ public class CommentItem extends BaseModel {
 
 	@JsonProperty("description")   private String comment;
 
+	/**
+	 * Get the title of the comment
+	 * 
+	 * @return the title of the comment
+	 */
 	public String getTitle() { return title; }
+
+	/**
+	 * Get the link to the comment
+	 * 
+	 * @return the link to the comment
+	 */
 	public String getCommentLink() { return commentLink; }
+
+	/**
+	 * Get the date that the comment was published
+	 * 
+	 * @return the date that the comment was published
+	 */
 	public Date getPublishDate() { return publishDate; }
+
+	/**
+	 * Get the comment
+	 * 
+	 * @return the comment
+	 */
 	public String getComment() { return comment; }
+
+	/**
+	 * Get the GUID link
+	 * 
+	 * @return the GUID link
+	 */
 	public String getGuidLink() { return(guidLink); }
 
 	@Override

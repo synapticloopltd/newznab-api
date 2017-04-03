@@ -33,6 +33,11 @@ public class Genre extends BaseModel {
 
 	@JsonProperty("@attributes")  private List<GenreAttributes> genreAttributes = new ArrayList<GenreAttributes>();
 
+	/**
+	 * Get the list of genre attributes
+	 * 
+	 * @return the list of genre attributes
+	 */
 	public List<GenreAttributes> getGenreAttributes() { return genreAttributes; }
 
 	@Override
