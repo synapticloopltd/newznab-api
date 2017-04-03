@@ -29,6 +29,11 @@ public class SubCategory extends BaseModel {
 
 	@JsonProperty("@attributes")  private CategoryAttributes categoryAttributes;
 
+	/**
+	 * Get the list of attributes of the categories
+	 * 
+	 * @return the list of attributes of the categories
+	 */
 	public CategoryAttributes getCategoryAttributes() { return categoryAttributes; }
 
 	@Override

@@ -45,16 +45,35 @@ public class UserAttributes extends BaseModel {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonProperty("createddate") private Date createdDate;
 
+	/**
+	 * Set the movie view flag - this is for internal JSON de-serialisation which 
+	 * checks to see if the passed in string is "yes"
+	 * 
+	 * @param value the check
+	 */
+
 	@JsonSetter
 	private void setMovieview(String value) {
 		this.hasMovieView = YES.equals(value);
 	}
 
+	/**
+	 * Set the music view flag - this is for internal JSON de-serialisation which 
+	 * checks to see if the passed in string is "yes"
+	 * 
+	 * @param value the check
+	 */
 	@JsonSetter
 	private void setMusicview(String value) {
 		this.hasMusicView = YES.equals(value);
 	}
 
+	/**
+	 * Set the console view flag - this is for internal JSON de-serialisation which 
+	 * checks to see if the passed in string is "yes"
+	 * 
+	 * @param value the check
+	 */
 	@JsonSetter
 	private void setConsoleview(String value) {
 		this.hasConsoleView = YES.equals(value);

@@ -29,7 +29,22 @@ public class LimitAttributes extends BaseModel {
 	@JsonProperty("max")      private int maxLimit;
 	@JsonProperty("default")  private int defaultLimit;
 
+	/**
+	 * Get the maximum number of results that can be returned from a search or 
+	 * a feed
+	 * 
+	 * @return the maximum number of results that can be returned from a search 
+	 *   or a feed
+	 */
 	public int getMaxLimit() { return maxLimit; }
+
+	/**
+	 * Get the default number of results that are returned from a search or a 
+	 *   feed
+	 * 
+	 * @return default number of results that are returned from a search or a 
+	 *   feed
+	 */
 	public int  getDefaultResultsLimit() { return defaultLimit; }
 
 	@Override

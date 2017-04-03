@@ -1,4 +1,4 @@
-package synapticloop.newznab.api.response.model.attributes;
+package synapticloop.newznab.api.response.model;
 
 /*
  * Copyright (c) 2016-2017 Synapticloop.
@@ -18,7 +18,7 @@ package synapticloop.newznab.api.response.model.attributes;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Attribute {
+public class VersionAttribute {
 	@JsonProperty("version")  private Float version;
 
 	/**

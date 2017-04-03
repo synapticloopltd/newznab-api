@@ -31,7 +31,18 @@ public class RSS extends BaseModel {
 	@JsonProperty("channel")  private FeedChannel feedChannel;
 	@JsonProperty("version")  private Float version;
 
+	/**
+	 * Get the feed channel
+	 * 
+	 * @return the feed channel
+	 */
 	public FeedChannel getFeedChannel() { return(feedChannel); }
+	
+	/**
+	 * Get the RSS version
+	 * 
+	 * @return the RSS version
+	 */
 	public Float getVersion() { return(version); }
 
 	@Override

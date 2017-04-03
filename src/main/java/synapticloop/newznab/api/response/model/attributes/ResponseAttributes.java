@@ -29,7 +29,18 @@ public class ResponseAttributes extends BaseModel {
 	@JsonProperty("offset")  private Long offset;
 	@JsonProperty("total")  private Long total;
 
+	/**
+	 * Get the current offset for this response
+	 * 
+	 * @return the current offset for this response
+	 */
 	public Long getOffset() { return offset; }
+
+	/**
+	 * Get the total number of results for this response
+	 * 
+	 * @return the total number of results for this response
+	 */
 	public Long getTotal() { return total; }
 
 	@Override

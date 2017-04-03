@@ -1,5 +1,21 @@
 package synapticloop.newznab.api;
 
+/*
+ * Copyright (c) 2016-2017 Synapticloop.
+ * 
+ * All rights reserved.
+ * 
+ * This code may contain contributions from other parties which, where 
+ * applicable, will be listed in the default build file for the project 
+ * ~and/or~ in a file named CONTRIBUTORS.txt in the root of the project.
+ * 
+ * This source code and any derived binaries are covered by the terms and 
+ * conditions of the Licence agreement ("the Licence").  You may not use this 
+ * source code or any derived binaries except in compliance with the Licence.  
+ * A copy of the Licence is available in the file named LICENSE.txt shipped with 
+ * this source code or binaries.
+ */
+
 import static synapticloop.newznab.api.Category.*;
 import static synapticloop.newznab.api.RequestConstants.*;
 
@@ -54,6 +70,9 @@ import synapticloop.newznab.api.response.RegistrationResponse;
 import synapticloop.newznab.api.response.SearchResponse;
 import synapticloop.newznab.api.response.UserResponse;
 
+/**
+ * This class provides requests to the indexer's API 
+ */
 public class NewzNabApi {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NewzNabApi.class);
 
@@ -247,6 +266,20 @@ public class NewzNabApi {
 	}
 
 	/**
+	 * Search TV shows
+	 * 
+	 * @param query the term to query 
+	 * 
+	 * @return The search results
+	 * 
+	 * @throws IOException if there was an error communicating with the API
+	 * @throws NewzNabApiException if there was an error with the API
+	 */
+	public SearchResponse searchTv(String query) throws NewzNabApiException, IOException {
+		return(searchTv(query, -1, -1, 0, -1, -1, -1, -1, -1, false, false));
+	}
+
+	/**
 	 * Search tv shows
 	 * 
 	 * @param query the term to query 
@@ -435,6 +468,10 @@ public class NewzNabApi {
 		SearchResponse parseResponse = parseResponse(httpResponse, SearchResponse.class);
 		httpResponse.close();
 		return parseResponse;
+	}
+
+	public SearchResponse searchBook(String query) throws NewzNabApiException, IOException {
+		return(searchBook(query, -1, -1, null, null, -1, false, false));
 	}
 
 	public SearchResponse searchBook(String query, long offset, int limit) throws NewzNabApiException, IOException {

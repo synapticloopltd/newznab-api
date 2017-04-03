@@ -48,6 +48,11 @@ public class Categories extends BaseModel {
 
 	@JsonProperty("category")  private List<Category> categories = new ArrayList<Category>();
 
+	/**
+	 * Get the list of categories
+	 * 
+	 * @return the list of categories
+	 */
 	public List<Category> getCategories() { return categories; }
 
 	@Override

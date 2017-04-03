@@ -67,6 +67,13 @@ public class Searching extends BaseModel {
 	 */
 	public boolean getHasBookSearch() { return(hasSearch(bookSearch)); }
 
+	/**
+	 * Determine whether the search is not null and is available on the indexer
+	 * 
+	 * @param search the search object to test
+	 * 
+	 * @return whether the search is available on this indexer
+	 */
 	private boolean hasSearch(Search search) {
 		return(null != search && search.getSearchAttributes().getIsAvailable());
 	}

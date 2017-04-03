@@ -29,6 +29,11 @@ public class Registration extends BaseModel {
 
 	@JsonProperty("@attributes")  private RegistrationAttributes registrationAttributes;
 
+	/**
+	 * Get the registration attributes
+	 * 
+	 * @return the registration attributes
+	 */
 	public RegistrationAttributes getRegistrationAttributes() { return registrationAttributes; }
 
 	@Override

@@ -34,12 +34,53 @@ public class ServerAttributes extends BaseModel {
 	@JsonProperty("url")  private String url;
 	@JsonProperty("image")  private String image;
 
+	/**
+	 * Get the application version for this indexer 
+	 * 
+	 * @return the application version for this indexer
+	 */
 	public String getAppVersion() { return appVersion; }
+
+	/**
+	 * The version of NewzNab that this indexer is running
+	 * 
+	 * @return the version of NewzNab that this indexer is running
+	 */
 	public Float getVersion() { return version; }
+
+	/**
+	 * Get the title of this indexer
+	 * 
+	 * @return the title of this indexer
+	 */
 	public String getTitle() { return title; }
+
+	/**
+	 * Get the strapline for this indexer
+	 * 
+	 * @return the strapline for this indexer
+	 */
 	public String getStrapline() { return strapline; }
+
+	/**
+	 * Get the email address for the owner of this indexer
+	 * 
+	 * @return the email address for the owner of this indexer
+	 */
 	public String getEmail() { return email; }
+
+	/**
+	 * Get the URL for the homepage for this indexer
+	 * 
+	 * @return the URL for the homepage of this indexer
+	 */
 	public String getUrl() { return url; }
+
+	/**
+	 * Get the branding image for this indexer
+	 * 
+	 * @return the branding image for this indexer
+	 */
 	public String getImage() { return image; }
 
 	@Override

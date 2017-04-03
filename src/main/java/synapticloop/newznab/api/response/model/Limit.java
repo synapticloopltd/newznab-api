@@ -29,6 +29,11 @@ public class Limit extends BaseModel {
 
 	@JsonProperty("@attributes")  private LimitAttributes limitAttributes;
 
+	/**
+	 * Get the attributes for the limit
+	 * 
+	 * @return the attributes for the limit
+	 */
 	public LimitAttributes getLimitAttributes() { return this.limitAttributes; }
 
 	@Override

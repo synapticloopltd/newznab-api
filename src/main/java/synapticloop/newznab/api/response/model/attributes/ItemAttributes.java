@@ -29,7 +29,18 @@ public class ItemAttributes extends BaseModel {
 	@JsonProperty("name")   private String name;
 	@JsonProperty("value")   private String value;
 
+	/**
+	 * Get the name of the item attribute
+	 * 
+	 * @return the name of the item attribute
+	 */
 	public String getName() { return name; }
+
+	/**
+	 * Get the value for this item attribute
+	 * 
+	 * @return the value for this item attribute
+	 */
 	public String getValue() { return value; }
 
 	@Override

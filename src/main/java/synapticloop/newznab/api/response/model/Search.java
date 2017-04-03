@@ -29,6 +29,11 @@ public class Search extends BaseModel {
 
 	@JsonProperty("@attributes")  private SearchAttributes searchAttributes;
 
+	/**
+	 * Get the attributes for the search
+	 * 
+	 * @return the attributes for the search
+	 */
 	public SearchAttributes getSearchAttributes() { return searchAttributes; }
 
 	@Override

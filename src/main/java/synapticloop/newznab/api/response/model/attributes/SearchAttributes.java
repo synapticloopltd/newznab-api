@@ -37,12 +37,29 @@ public class SearchAttributes extends BaseModel {
 	@JsonProperty("supportedParams")  private List<String> supportedParams = new ArrayList<String>();
 
 
+	/**
+	 * Set the available flag - this is for internal JSON de-serialisation which 
+	 * checks to see if the passed in string is "yes"
+	 * 
+	 * @param value the check
+	 */
 	@JsonSetter
 	private void setAvailable(String value) {
 		this.isAvailable = YES.equals(value);
 	}
 
+	/**
+	 * Return whether this type of search is available
+	 * 
+	 * @return whether this type of search is available
+	 */
 	public boolean getIsAvailable() { return isAvailable; }
+	
+	/**
+	 * Return the list of supported parameters that can be queried against.
+	 * 
+	 * @return the list of supported parameters that can be queried against
+	 */
 	public List<String> getSupportedParams() { return supportedParams; }
 
 	@Override

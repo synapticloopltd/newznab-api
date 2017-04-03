@@ -32,17 +32,40 @@ public class RegistrationAttributes extends BaseModel {
 	@JsonProperty("available")  private boolean isAvailable;
 	@JsonProperty("open")  private boolean isOpen;
 
+	/**
+	 * Set the available flag - this is for internal JSON de-serialisation which 
+	 * checks to see if the passed in string is "yes"
+	 * 
+	 * @param value the check
+	 */
 	@JsonSetter
 	private void setAvailable(String value) {
 		this.isAvailable = YES.equals(value);
 	}
 
+	/**
+	 * Set the open flag - this is for internal JSON de-serialisation which 
+	 * checks to see if the passed in string is "yes"
+	 * 
+	 * @param value the check
+	 */
 	@JsonSetter
 	private void setOpen(String value) {
 		this.isOpen = YES.equals(value);
 	}
 
+	/**
+	 * Return whether registration is available on this indexer
+	 * 
+	 * @return whether registration is available on this indexer
+	 */
 	public boolean getIsAvailable() { return isAvailable; }
+
+	/**
+	 * Return whether registrations are open on this indexer
+	 * 
+	 * @return whether registration is open on this indexer
+	 */
 	public boolean getIsOpen() { return isOpen; }
 
 	@Override

@@ -24,14 +24,25 @@ import org.slf4j.Logger;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * The BaseModel catches any properties that are on the JSON to be de-serialised 
+ * and do not have any setter defined for them.  This will log a warning to the 
+ * output to be picked up and mapped in future versions.
+ */
 public abstract class BaseModel {
 	@JsonIgnore protected Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+	/**
+	 * Get the logger to use for any messages that need to be output.
+	 * 
+	 * @return the logger to use for any messages to be output
+	 */
 	public abstract Logger getLogger();
 
 	/**
 	 * Set additional properties that were found on the JSON string, but were 
-	 * not mapped to a field.  This will output a warning message in the logs
+	 * not mapped to a field.  This will output a warning message in the logs so 
+	 * that additional properties can be set on the object
 	 * 
 	 * @param name The name of the property to set
 	 * @param value the value of the object to set.
@@ -42,4 +53,15 @@ public abstract class BaseModel {
 		this.additionalProperties.put(name, value);
 	}
 
+	/**
+	 * Return an additional property which was not picked up by the JSON de-serialisation 
+	 * process
+	 * 
+	 * @param name the name of the property to retrieve
+	 * 
+	 * @return the property value
+	 */
+	public Object getAdditionalProperty(String name) {
+		return(this.additionalProperties.get(name));
+	}
 }

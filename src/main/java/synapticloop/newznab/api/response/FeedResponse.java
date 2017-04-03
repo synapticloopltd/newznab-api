@@ -28,6 +28,12 @@ import synapticloop.newznab.api.response.model.Image;
 import synapticloop.newznab.api.response.model.RSS;
 import synapticloop.newznab.api.response.model.attributes.FeedAttribute;
 
+/**
+ * The feed response encapsulates data that is returned by the feed API requests.
+ * In effect this is an RSS feed with helper methods to drill down into the 
+ * structure
+ * 
+ */
 public class FeedResponse extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FeedResponse.class);
 
@@ -35,15 +41,67 @@ public class FeedResponse extends BaseModel {
 
 	@JsonProperty("rss")  private RSS rss;
 
+	/**
+	 * Get the ID of the feed
+	 * 
+	 * @return the ID of the feed
+	 */
 	public long getId() { return(feedAttribute.getId()); }
+
+	/**
+	 * Get the feed version
+	 * 
+	 * @return the feed version
+	 */
 	public Float getVersion() { return(rss.getVersion()); }
 
+	/**
+	 * Get the description of the feed
+	 * 
+	 * @return the description of the feed
+	 */
 	public String getDescription() { return(rss.getFeedChannel().getDescription()); }
+
+	/**
+	 * Get the branding image for the feed
+	 * 
+	 * @return the branding image of the feed
+	 */
 	public Image getImage() { return(rss.getFeedChannel().getImage()); }
+
+	/**
+	 * Get the language that this feed is in
+	 * 
+	 * @return the language that this feed is in
+	 */
 	public String getLanguage() { return(rss.getFeedChannel().getLanguage()); }
+
+	/**
+	 * Get the URL to the homepage
+	 * 
+	 * @return the URL to the homepage
+	 */
 	public String getSiteLink() { return(rss.getFeedChannel().getSiteLink()); }
+
+	/**
+	 * Get the title of the feed
+	 * 
+	 * @return the title of the feed
+	 */
 	public String getTitle() { return(rss.getFeedChannel().getTitle()); }
+
+	/**
+	 * Get the web master for this feed
+	 * 
+	 * @return the web master for this feed
+	 */
 	public String getWebMaster() { return(rss.getFeedChannel().getWebMaster()); }
+
+	/**
+	 * Get the list of items in the feed
+	 * 
+	 * @return the list of items in the feed
+	 */
 	public List<FeedItem> getFeedItems() { return(rss.getFeedChannel().getFeedItems()); }
 
 	@Override

@@ -50,8 +50,18 @@ public class Category extends BaseModel {
 	@JsonProperty("@attributes")  private CategoryAttributes categoryAttributes;
 	@JsonProperty("subcat") private List<SubCategory> subCaterories = new ArrayList<SubCategory>();
 
+	/**
+	 * Get the category attributes
+	 * 
+	 * @return the category attributes
+	 */
 	public CategoryAttributes getCategoryAttributes() { return categoryAttributes; }
 
+	/**
+	 * Get the list of sub-categories for this category
+	 * 
+	 * @return the list of sub categories for this category
+	 */
 	public List<SubCategory> getSubCaterories() { return subCaterories; }
 
 	@Override

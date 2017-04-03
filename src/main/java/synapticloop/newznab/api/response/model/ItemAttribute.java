@@ -28,10 +28,14 @@ public class ItemAttribute extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ItemAttribute.class);
 
 	@JsonProperty("@attributes") private ItemAttributes itemAttributes;
-	
+
+	/**
+	 * Get the attributes for the item
+	 * 
+	 * @return the attributes for the item
+	 */
 	public ItemAttributes getItemAttributes() { return itemAttributes; }
 
 	@Override
 	public Logger getLogger() { return(LOGGER); }
-
 }

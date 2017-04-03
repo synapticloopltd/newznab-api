@@ -21,5 +21,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FeedAttribute {
 	@JsonProperty("id")  private long id;
 
+	/**
+	 * Get the ID of the feed
+	 * 
+	 * @return the id of the feed
+	 */
 	public long getId() { return id; }
 }

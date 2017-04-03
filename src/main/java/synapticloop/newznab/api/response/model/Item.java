@@ -59,6 +59,11 @@ public class Item extends BaseModel {
 	@JsonProperty("enclosure")    private Enclosure enclosure;
 	@JsonProperty("attr")         private List<ItemAttribute> itemAttributes = new ArrayList<ItemAttribute>();
 
+	/**
+	 * Get the title for the item
+	 * 
+	 * @return the title for the item
+	 */
 	public String getTitle() { return title; }
 	public String getDetailsLink() { return detailsLink; }
 	public String getNzbLink() { return nzbLink; }

@@ -25,7 +25,10 @@ import synapticloop.newznab.api.response.model.attributes.UserAttributes;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
+/**
+ * The user response encapsulates the data that is returned from the get user
+ * API call
+ */
 public class UserResponse extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserResponse.class);
 

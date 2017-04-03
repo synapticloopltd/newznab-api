@@ -29,6 +29,11 @@ public class Server extends BaseModel {
 
 	@JsonProperty("@attributes")  private ServerAttributes serverAttributes;
 
+	/**
+	 * Get the server's attributes
+	 * 
+	 * @return the server's attributes
+	 */
 	public ServerAttributes getServerAttributes() { return serverAttributes; }
 
 	@Override

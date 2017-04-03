@@ -23,15 +23,15 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import synapticloop.newznab.api.response.model.VersionAttribute;
 import synapticloop.newznab.api.response.model.Channel;
 import synapticloop.newznab.api.response.model.Image;
 import synapticloop.newznab.api.response.model.Item;
-import synapticloop.newznab.api.response.model.attributes.Attribute;
 
 public class DetailsResponse extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DetailsResponse.class);
 
-	@JsonProperty("@attributes")  private Attribute attribute;
+	@JsonProperty("@attributes")  private VersionAttribute attribute;
 	@JsonProperty("channel")  private Channel channel;
 
 	public Float getVersion() { return(attribute.getVersion()); }

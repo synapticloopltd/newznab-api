@@ -37,12 +37,32 @@ public class GroupAttributes extends BaseModel {
 	@JsonProperty("lastupdate")  private Date lastUpdate;
 
 
+	/**
+	 * Get the internal ID of the group
+	 * 
+	 * @return the internal ID of the group
+	 */
 	public int getId() { return id; }
 
+	/**
+	 * Get the name of the Usenet Group
+	 * 
+	 * @return the name of the usenet group
+	 */
 	public String getName() { return name; }
 
+	/**
+	 * Get the description of the usenet group
+	 * 
+	 * @return  the description of the usenet group
+	 */
 	public String getDescription() { return description; }
 
+	/**
+	 * Get the date that the group was last updated
+	 * 
+	 * @return the date that the group was last updated
+	 */
 	public Date getLastUpdate() { return lastUpdate; }
 
 	@Override

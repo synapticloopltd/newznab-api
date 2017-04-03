@@ -23,27 +23,88 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import synapticloop.newznab.api.response.model.VersionAttribute;
 import synapticloop.newznab.api.response.model.Channel;
 import synapticloop.newznab.api.response.model.Image;
 import synapticloop.newznab.api.response.model.Item;
-import synapticloop.newznab.api.response.model.attributes.Attribute;
 
+/**
+ * The search response encapsulates the data returned from the search API calls
+ */
 public class SearchResponse extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SearchResponse.class);
 
-	@JsonProperty("@attributes")  private Attribute attribute;
+	@JsonProperty("@attributes")  private VersionAttribute attribute;
 	@JsonProperty("channel")  private Channel channel;
 
+	/**
+	 * Get the version of the indexer for this API
+	 * 
+	 * @return the version of the indexer for this API
+	 */
 	public Float getVersion() { return(attribute.getVersion()); }
+
+	/**
+	 * Get the title for the indexer
+	 * 
+	 * @return the title for the indexer
+	 */
 	public String getTitle() { return(channel.getTitle()); }
+
+	/**
+	 * Get the description of the indexer
+	 * 
+	 * @return the description of the indexer
+	 */
 	public String getDescription() { return(channel.getDescription()); }
+
+	/**
+	 * Get the URL of the homepage of the indexer
+	 * 
+	 * @return the URL of the homepage of the indexer
+	 */
 	public String getLink() { return(channel.getLink()); }
+
+	/**
+	 * Get the language of the indexer
+	 * 
+	 * @return the language of the indexer
+	 */
 	public String getLanguage() { return(channel.getLanguage()); }
+
+	/**
+	 * Get the web master that looks after this indexer
+	 * 
+	 * @return the web master that looks after this indexer
+	 */
 	public String getWebMaster() { return(channel.getWebMaster()); }
+
+	/**
+	 * Get the list of items that is returned by the search
+	 * 
+	 * @return the list of items that is returned by the search
+	 */
 	public List<Item> getItems() { return(channel.getItems()); }
+
+	/**
+	 * Get the branding image for this indexer
+	 * 
+	 * @return the branding image for this indexer
+	 */
 	public Image getImage() { return(channel.getImage()); }
 
+	/**
+	 * Get the starting offset of the search results
+	 * 
+	 * @return the starting offset of the search results
+	 */
 	public Long getOffset() { return(channel.getResponse().getResponseAttributes().getOffset()); }
+
+	/**
+	 * Get the total number of results for this search
+	 * 
+	 * @return the total number of results for this search
+	 */
 	public Long getTotal() { return(channel.getResponse().getResponseAttributes().getTotal()); }
 
 	@Override

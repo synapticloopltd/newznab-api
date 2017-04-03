@@ -29,6 +29,11 @@ public class Response extends BaseModel {
 
 	@JsonProperty("@attributes")  private ResponseAttributes responseAttributes;
 
+	/**
+	 * Get the response attributes
+	 * 
+	 * @return the response attributes
+	 */
 	public ResponseAttributes getResponseAttributes() { return(responseAttributes); }
 
 	@Override

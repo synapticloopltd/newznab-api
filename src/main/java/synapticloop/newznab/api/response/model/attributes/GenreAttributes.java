@@ -26,15 +26,30 @@ import synapticloop.newznab.api.response.BaseModel;
 public class GenreAttributes extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GenreAttributes.class);
 
-	@JsonProperty("id")      private int id;
-	@JsonProperty("name")  private String name;
+	@JsonProperty("id")          private int id;
+	@JsonProperty("name")        private String name;
 	@JsonProperty("categoryid")  private int category;
 
 	
+	/**
+	 * Get the ID of the Genre
+	 * 
+	 * @return The ID of the genre
+	 */
 	public int getId() { return id; }
 
+	/**
+	 * Get the readable name of the genre
+	 * 
+	 * @return the readable name of the genre
+	 */
 	public String getName() { return name; }
 
+	/**
+	 * Get the category number that this genre applies to
+	 * 
+	 * @return the category that this genre applies to
+	 */
 	public int getCategory() { return category; }
 
 

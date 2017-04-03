@@ -23,11 +23,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import synapticloop.newznab.api.response.model.attributes.CommentAttributes;
 
+/**
+ * This class encapsulates the response to the addition of a comment
+ */
 public class CommentResponse extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CommentResponse.class);
 
 	@JsonProperty("@attributes") private CommentAttributes commentAttributes;
 
+	/**
+	 * Get the generated ID for the added comment
+	 * 
+	 * @return the generated ID for the added comment
+	 */
 	public long getId() { return(commentAttributes.getId()); }
 
 	@Override

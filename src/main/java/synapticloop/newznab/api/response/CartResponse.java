@@ -23,12 +23,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import synapticloop.newznab.api.response.model.attributes.CartAttributes;
 
+/**
+ * This class encapsulates the data that is returned from the addition and 
+ * deletion requests to the API
+ */
 public class CartResponse extends BaseModel {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CartResponse.class);
 
 	@JsonProperty("@attributes") private CartAttributes cartAttributes;
 
+	/**
+	 * Get the generated ID for the cart action
+	 * 
+	 * @return the generated ID for the cart action
+	 */
 	public String getId() { return(cartAttributes.getId()); }
+
 	@Override
 	public Logger getLogger() { return(LOGGER); }
 }

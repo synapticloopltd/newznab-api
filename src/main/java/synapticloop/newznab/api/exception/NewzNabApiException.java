@@ -19,23 +19,38 @@ package synapticloop.newznab.api.exception;
 public class NewzNabApiException extends Exception {
 	private static final long serialVersionUID = 4378654574290599119L;
 
+	/**
+	 * Instantiate a new NewzNab API Exception
+	 */
 	public NewzNabApiException() {
 		super();
 	}
 
+	/**
+	 * Instantiate a new NewzNab API Exception
+	 * 
+	 * @param message the exception message
+	 */
 	public NewzNabApiException(String message) {
 		super(message);
 	}
 
+	/**
+	 * Instantiate a new NewzNab API Exception
+	 * 
+	 * @param cause the root cause
+	 */
 	public NewzNabApiException(Throwable cause) {
 		super(cause);
 	}
 
+	/**
+	 * Instantiate a new NewzNab API Exception
+	 * 
+	 * @param message the exception message
+	 * @param cause the root cause
+	 */
 	public NewzNabApiException(String message, Throwable cause) {
 		super(message, cause);
-	}
-
-	public NewzNabApiException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
 	}
 }
